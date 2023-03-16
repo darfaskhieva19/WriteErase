@@ -66,6 +66,21 @@ namespace WriteErase
                 return (double)(Convert.ToDouble(ProductCost) - (Convert.ToDouble(ProductCost) * ProductDiscountAmount / 100)) + " руб.";
             }
         }
+        public double CostOrders
+        {
+            get
+            {
+                if (ProductDiscountAmount > 0)
+                {
+                    double cost = (double)((double)ProductCost - (double)ProductCost * (ProductDiscountAmount / 100));
+                    return cost;
+                }
+                else
+                {
+                    return (double)ProductCost;
+                }
+            }
+        }
         public string Photo
         {
             get

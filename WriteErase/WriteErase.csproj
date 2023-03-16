@@ -73,6 +73,7 @@
     <Compile Include="classes\ClassBasket.cs" />
     <Compile Include="classes\ClassFrame.cs" />
     <Compile Include="classes\ClassProduct.cs" />
+    <Compile Include="ClassOrder.cs" />
     <Compile Include="pages\ListOfTovar.xaml.cs">
       <DependentUpon>ListOfTovar.xaml</DependentUpon>
     </Compile>
@@ -117,10 +118,13 @@
     <Compile Include="User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="WindowBasket.xaml.cs">
+    <Compile Include="windows\WindowStatus.xaml.cs">
+      <DependentUpon>WindowStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="windows\WindowBasket.xaml.cs">
       <DependentUpon>WindowBasket.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowOrder.xaml.cs">
+    <Compile Include="windows\WindowOrder.xaml.cs">
       <DependentUpon>WindowOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\WindowCaptcha.xaml.cs">
@@ -147,11 +151,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowBasket.xaml">
+    <Page Include="windows\WindowStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowOrder.xaml">
+    <Page Include="windows\WindowBasket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\WindowOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

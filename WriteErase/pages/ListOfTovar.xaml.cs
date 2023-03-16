@@ -176,8 +176,8 @@ namespace WriteErase
 
         private void btnZakaz_Click(object sender, RoutedEventArgs e) //просмотр заказов
         {
-            //windows.WindowOrder windowOrder = new windows.WindowOrder();
-            //windowOrder.ShowDialog();
+            WindowOrder windowOrder = new WindowOrder();
+            windowOrder.ShowDialog();
         }
 
         private void btnOrder_Click(object sender, RoutedEventArgs e) //корзина

@@ -58,7 +58,9 @@ C:\Users\User\Source\Repos\WriteEr\WriteErase\obj\Debug\WriteErase.Properties.Re
 C:\Users\User\Source\Repos\WriteEr\WriteErase\obj\Debug\WriteErase.csproj.GenerateResource.cache
 C:\Users\User\Source\Repos\WriteEr\WriteErase\obj\Debug\WriteErase.csproj.CoreCompileInputs.cache
 C:\Users\User\Source\Repos\WriteEr\WriteErase\obj\Debug\WriteErase.csproj.CopyComplete
-C:\Users\User\Source\Repos\WriteEr\WriteErase\obj\Debug\WindowBasket.g.cs
 C:\Users\User\Source\Repos\WriteEr\WriteErase\obj\Debug\WindowOrder.g.cs
-C:\Users\User\Source\Repos\WriteEr\WriteErase\obj\Debug\WindowBasket.baml
 C:\Users\User\Source\Repos\WriteEr\WriteErase\obj\Debug\WindowOrder.baml
+C:\Users\User\Source\Repos\WriteEr\WriteErase\obj\Debug\WindowStatus.g.cs
+C:\Users\User\Source\Repos\WriteEr\WriteErase\obj\Debug\windows\WindowBasket.g.cs
+C:\Users\User\Source\Repos\WriteEr\WriteErase\obj\Debug\WindowStatus.baml
+C:\Users\User\Source\Repos\WriteEr\WriteErase\obj\Debug\windows\WindowBasket.baml
