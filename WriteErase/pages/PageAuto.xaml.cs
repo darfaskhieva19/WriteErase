@@ -108,7 +108,7 @@ namespace WriteErase
 
         private void tbGuest_Click(object sender, RoutedEventArgs e)
         {
-            ClassFrame.frameL.Navigate(new ListOfTovar());
+           
         }
     }
 }

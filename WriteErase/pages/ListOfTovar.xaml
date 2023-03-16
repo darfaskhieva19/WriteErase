@@ -6,9 +6,101 @@
       xmlns:local="clr-namespace:WriteErase"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ListOfTovar">
+      Title="Список товаров">
 
+    <Page.Resources>
+        <BitmapImage x:Key="NoImage" UriSource="/resource/picture.png"/>
+    </Page.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="tbFIO" Grid.Row="0"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 30 0"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Сортировка"/>
+                <ComboBox Name="cbSort" SelectionChanged="cbSort_SelectionChanged" Style="{StaticResource CBox}">
+                    <ComboBoxItem Content="Без сортировки"/>
+                    <ComboBoxItem Content="По возрастанию"/>
+                    <ComboBoxItem Content="По убыванию"/>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                <TextBlock Text="Скидка"/>
+                <ComboBox Name="cbFilter" SelectionChanged="cbFilter_SelectionChanged" Style="{StaticResource CBox}">
+                    <ComboBoxItem Content="Все диапазоны"/>
+                    <ComboBoxItem Content="от 0% до 9,99%"/>
+                    <ComboBoxItem Content="от 10% до 14,99%"/>
+                    <ComboBoxItem Content="от 15% и более"/>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                <TextBlock Text="Поиск по наименованию"/>
+                <TextBox Name="tbSearch" TextChanged="tbSearch_TextChanged" Style="{StaticResource TB}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Name="tbCountZap"/>
+            </StackPanel>
+        </Grid>
+
+        <ListView Name="ListT" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="1" CornerRadius="5" BorderThickness="0.5" BorderBrush="Black" >
+                        <Grid Name="gridM">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="3.5*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <Image Source="{Binding Photo, TargetNullValue={StaticResource NoImage}}" Width="180" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding Manufact}" TextWrapping="Wrap" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Стоимость:"/>
+                                    <TextBlock Text="{Binding Price}" TextDecorations="Strikethrough"/>
+                                    <TextBlock Text="{Binding NewCost}" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="{Binding Disc}"/>
+                                <Button Name="btnDelete" Uid="{Binding ProductArticleNumber}" Content="Удалить" Click="btnDelete_Click"  Loaded="btnDelete_Loaded" Visibility="Collapsed" Template="{StaticResource Btn1}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить к заказу" Click="MenuItem_Click"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" >
+            <Button Name="btnBack" Content="Вернуться" Click="btnBack_Click" Template="{StaticResource Btn}"/>
+            <Button Name="btnOrder" Content="Корзина" Click="btnOrder_Click" Template="{StaticResource Btn}" Visibility="Collapsed"/>
+            <Button Name="btnZakaz" Content="Просмотр заказов" Click="btnZakaz_Click" Visibility="Collapsed" HorizontalAlignment="Right" Template="{StaticResource Btn}"/>
+        </StackPanel>
+
     </Grid>
 </Page>

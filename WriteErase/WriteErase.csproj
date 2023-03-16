@@ -71,6 +71,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="classes\ClassFrame.cs" />
+    <Compile Include="classes\ClassProduct.cs" />
     <Compile Include="pages\ListOfTovar.xaml.cs">
       <DependentUpon>ListOfTovar.xaml</DependentUpon>
     </Compile>
@@ -189,6 +190,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\A346R4.jpg" />
+    <Resource Include="images\A543T6.jpg" />
+    <Resource Include="images\B730E2.jpg" />
+    <Resource Include="images\D419T7.png" />
+    <Resource Include="images\F719R5.jpg" />
+    <Resource Include="images\G278R6.png" />
+    <Resource Include="images\H452A3.png" />
+    <Resource Include="images\R259E6.jpg" />
+    <Resource Include="images\T564P5.jpg" />
+    <Resource Include="images\А112Т4.jpg" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -199,6 +210,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="resource\picture.png" />
     <Resource Include="resource\icon.ico" />
     <Resource Include="resource\logo.png" />
   </ItemGroup>
