@@ -86,15 +86,15 @@ namespace WriteErase
                     CAPTCHA();
                     switch (user.UserRole)
                     {
-                        //case 1: //клиент
-                        //    ClassFrame.frameL.Navigate(new ListOfTovar(user));
-                        //    break;
-                        //case 2: //администратор
-                        //    ClassFrame.frameL.Navigate(new ListOfTovar(user));
-                        //    break;
-                        //case 3: //менеджер
-                        //    ClassFrame.frameL.Navigate(new ListOfTovar(user));
-                        //    break;
+                        case 1: //клиент
+                            ClassFrame.frameL.Navigate(new ListOfTovar(user));
+                            break;
+                        case 2: //администратор
+                            ClassFrame.frameL.Navigate(new ListOfTovar(user));
+                            break;
+                        case 3: //менеджер
+                            ClassFrame.frameL.Navigate(new ListOfTovar(user));
+                            break;
                     }
                 }
             }
@@ -108,7 +108,7 @@ namespace WriteErase
 
         private void tbGuest_Click(object sender, RoutedEventArgs e)
         {
-           
+            ClassFrame.frameL.Navigate(new ListOfTovar());
         }
     }
 }

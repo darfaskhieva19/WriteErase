@@ -23,6 +23,7 @@ namespace WriteErase
     {
         List<Product> listFilter;
         User user;
+        List<ClassBasket> basket = new List<ClassBasket>();
 
         public ListOfTovar()
         {
@@ -106,7 +107,25 @@ namespace WriteErase
         }
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            Product product = (Product)ListT.SelectedItem;
+            bool k = false;
+            foreach(ClassBasket classBasket in basket)
+            {
+                if(classBasket.product == product)
+                {
+                    classBasket.count = classBasket.count += 1;
+                    k = true;
+                }
+            }
+            if (!k)
+            {
+                ClassBasket CLBasket = new ClassBasket();
+                CLBasket.product = product;
+                CLBasket.article = product.ProductArticleNumber;
+                CLBasket.count = 1;
+                basket.Add(CLBasket);
+            }
+            btnOrder.Visibility = Visibility.Visible;
         }
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -163,12 +182,12 @@ namespace WriteErase
 
         private void btnOrder_Click(object sender, RoutedEventArgs e) //корзина
         {
-            //windows.BasketWindow basket = new windows.BasketWindow();
-            //basket.ShowDialog();
-            //if (DataBase.products.Count == 0)
-            //{
-            //    btnOrder.Visibility = Visibility.Collapsed;
-            //}
+            WindowBasket windowBasket = new WindowBasket(basket);
+            windowBasket.ShowDialog();
+            if (basket.Count == 0)
+            {
+                btnOrder.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

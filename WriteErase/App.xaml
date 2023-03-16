@@ -31,10 +31,23 @@
             </Border>
         </ControlTemplate>
 
+        <ControlTemplate TargetType="Button" x:Key="Btn2">
+            <Border CornerRadius="17" BorderThickness="0.5" BorderBrush="Black" Background="#76e383" Height="40" Width="100" Margin="4">
+                <ContentControl  VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Calibry" FontSize="16" Foreground="Black" Content="{TemplateBinding Content}"/>
+            </Border>
+        </ControlTemplate>
+
         <Style TargetType="TextBox" x:Key="TB">
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
             <Setter Property="Width" Value="190"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="Tb">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="Width" Value="90"/>
             <Setter Property="Height" Value="30"/>
         </Style>
 

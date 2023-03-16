@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\User\Source\Repos\WriteEr\WriteErase\App.xaml
-4-1861553509
+6-28956071
 2-1957146511
-28434546144
+31-855590926
 18320009293
-pages\ListOfTovar.xaml;MainWindow.xaml;pages\PageAuto.xaml;windows\WindowCaptcha.xaml;
+pages\ListOfTovar.xaml;MainWindow.xaml;pages\PageAuto.xaml;WindowBasket.xaml;WindowOrder.xaml;windows\WindowCaptcha.xaml;
 
-False
+True
 
