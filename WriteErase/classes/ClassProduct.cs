@@ -59,11 +59,11 @@ namespace WriteErase
                 return string.Format("{0:N2}", ProductCost) + " руб.";
             }
         }
-        public string NewCost 
+        public double NewCost 
         {
             get
             {
-                return (double)(Convert.ToDouble(ProductCost) - (Convert.ToDouble(ProductCost) * ProductDiscountAmount / 100)) + " руб.";
+                return (double)(Convert.ToDouble(ProductCost) - (Convert.ToDouble(ProductCost) * ProductDiscountAmount / 100));
             }
         }
         public double CostOrders

@@ -45,7 +45,8 @@
                                         <TextBlock Text="{Binding product.NewCost}" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding product.Disc}"/>
+                                        <TextBlock Text="Скидка:"/>
+                                        <TextBlock Text="{Binding product.Disc, StringFormat={}{0}%}"/>
                                     </StackPanel>
                                 </StackPanel>
                                 <Grid Grid.Column="2">
@@ -53,7 +54,7 @@
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1.5*"/>
                                 </Grid.RowDefinitions>
-                                <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
                                     <TextBlock Text="Количество"/>
                                     <TextBox Name="tbKolvo" TextChanged="tbKolvo_TextChanged" PreviewTextInput="tbKolvo_PreviewTextInput" Style="{StaticResource Tb}"/>
                                 </StackPanel>

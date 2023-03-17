@@ -30,12 +30,12 @@ namespace WriteErase
             this.basket = basket;
             this.user = user;
             ListProd.ItemsSource = basket;
-            cbPickPoint.SelectedIndex = 0;
             List<PickupPoint> pickupPoints = DataBase.Base.PickupPoint.ToList();
             for (int i = 0; i < pickupPoints.Count; i++)
             {
                 cbPickPoint.Items.Add(pickupPoints[i].PostCode + ", " + pickupPoints[i].City1.CityName + ", " + pickupPoints[i].Street + ", " + pickupPoints[i].NumberHome);
             }
+            cbPickPoint.SelectedIndex = 0;
             if (user != null)
             {
                 tbFIO.Text = " " + user.UserSurname + " " + user.UserName + " " + user.UserPatronymic;
@@ -140,6 +140,12 @@ namespace WriteErase
                 }
                 if (cbPickPoint.SelectedIndex != 0)
                 {
+                    order.OrderPickupPoint = cbPickPoint.SelectedIndex;
+                    order.OrderDate = DateTime.Now;
+                    if (user != null)
+                    {
+                        order.OrderClient = user.UserID;
+                    }
                     foreach (ClassBasket classB in basket)
                     {
                         OrderProduct orderProduct = new OrderProduct()

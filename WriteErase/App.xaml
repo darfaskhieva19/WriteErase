@@ -47,7 +47,7 @@
         <Style TargetType="TextBox" x:Key="Tb">
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontFamily" Value="Comic Sans MS"/>
-            <Setter Property="Width" Value="90"/>
+            <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="30"/>
         </Style>
 
