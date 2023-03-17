@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,35 +32,18 @@ namespace WriteErase
             this.user = user;
             ListProd.ItemsSource = basket;
             List<PickupPoint> pickupPoints = DataBase.Base.PickupPoint.ToList();
-            for (int i = 0; i < pickupPoints.Count; i++)
+            foreach (PickupPoint pickup in pickupPoints)
             {
-                cbPickPoint.Items.Add(pickupPoints[i].PostCode + ", " + pickupPoints[i].City1.CityName + ", " + pickupPoints[i].Street + ", " + pickupPoints[i].NumberHome);
+                cbPickPoint.Items.Add(pickup.PostCode + ", " + pickup.City1.CityName + ", " + pickup.Street + ", " + pickup.NumberHome);
             }
             cbPickPoint.SelectedIndex = 0;
             if (user != null)
             {
                 tbFIO.Text = " " + user.UserSurname + " " + user.UserName + " " + user.UserPatronymic;
             }
-            calculSumAndDiscount();
-            tbSum.Text = "Сумма заказа: " + string.Format("{0:N2}", sum) + " руб.";
-            tbSumDiscount.Text = "Скидка: " + sumDiscount + "%";
+            calculSumAndDiscount();            
         }
-        private void btDelete_Click(object sender, RoutedEventArgs e)
-        {            
-            if (MessageBox.Show("Вы действительно хотите удалить данный товар?", "Системное сообщение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            {
-                Button btn = (Button)sender;
-                string index = btn.Uid;
-                ClassBasket classBasket = basket.FirstOrDefault(z => z.product.ProductArticleNumber == index);
-                basket.Remove(classBasket);
-                if (basket.Count == 0)
-                {
-                    Close();
-                }
-                ListProd.Items.Refresh();
-                calculSumAndDiscount();
-            }
-        }
+        
         private void calculSumAndDiscount()
         {
             sum = 0; sumDiscount = 0;
@@ -68,6 +52,8 @@ namespace WriteErase
                 sum+= classBasket.count * classBasket.product.CostOrders;
                 sumDiscount += classBasket.count * ((double)classBasket.product.ProductCost - classBasket.product.CostOrders);
             }
+            tbSum.Text = "Сумма заказа: " + string.Format("{0:N2}", sum) + " руб.";
+            tbSumDiscount.Text = "Скидка: " + sumDiscount + "%";
         } 
         private void tbKolvo_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -79,27 +65,6 @@ namespace WriteErase
                 basket.Remove(Prbasket);
                 ListProd.Items.Refresh();
             }
-
-            //TextBox tb = (TextBox)sender;
-            //string index = tb.Uid;
-            //ClassBasket Prbasket = basket.FirstOrDefault(z => z.product.ProductArticleNumber == index);
-            //if (tb.Text.Replace(" ", "") == "")
-            //{
-            //    Prbasket.count = 0;
-            //}
-            //else
-            //{
-            //    Prbasket.count = Convert.ToInt32(tb.Text);
-            //}
-            //if (Prbasket.count == 0)
-            //{
-            //    basket.Remove(Prbasket);
-            //}
-            //if (basket.Count == 0)
-            //{
-            //    this.Close();
-            //}
-            //ListProd.Items.Refresh();
             calculSumAndDiscount();
         }
 
@@ -159,6 +124,18 @@ namespace WriteErase
             catch
             {
                 MessageBox.Show("Что-то пошло не так..");
+            }
+        }
+
+        private void bDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить данный товар?", "Системное сообщение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                Button btn = (Button)sender;
+                string index = btn.Uid;
+                ClassBasket classBasket = basket.FirstOrDefault(z => z.product.ProductArticleNumber == index);
+                basket.Remove(classBasket);
+                ListProd.Items.Refresh();
             }
         }
     }

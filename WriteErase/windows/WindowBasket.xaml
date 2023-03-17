@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WriteErase"
         mc:Ignorable="d"
-        Title="Корзина" Height="550" Width="900">
+        Title="Корзина" Height="650" Width="900">
     <Window.Resources>
             <BitmapImage x:Key="NoImage" UriSource="/resource/picture.png"/>
         </Window.Resources>
@@ -14,7 +14,8 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="5*"/>
-                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1.7*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
@@ -29,7 +30,7 @@
                             <Grid Name="gridM">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1.5*"/>
-                                    <ColumnDefinition Width="3.5*"/>
+                                    <ColumnDefinition Width="3*"/>
                                     <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0">
@@ -49,40 +50,45 @@
                                         <TextBlock Text="{Binding product.Disc, StringFormat={}{0}%}"/>
                                     </StackPanel>
                                 </StackPanel>
-                                <Grid Grid.Column="2">
+                            <Grid Grid.Column="2">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1.5*"/>
-                                </Grid.RowDefinitions>
-                                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                    <TextBlock Text="Количество"/>
-                                    <TextBox Name="tbKolvo" TextChanged="tbKolvo_TextChanged" PreviewTextInput="tbKolvo_PreviewTextInput" Style="{StaticResource Tb}"/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>                                
+                                <StackPanel Orientation="Vertical" Grid.Row="0">
+                                    <TextBlock Text="Количество: "/>
+                                    <TextBox Name="tbKolvo" Uid="{Binding product.ProductArticleNumber}" TextChanged="tbKolvo_TextChanged" PreviewTextInput="tbKolvo_PreviewTextInput" Style="{StaticResource Tb}" HorizontalAlignment="Center"/>
                                 </StackPanel>
-                                <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"> 
-                                    <Button Name="btDelete" Uid="{Binding ProductArticleNumber}" Content="Удалить" Click="btDelete_Click" Template="{StaticResource Btn2}"/>
+                                <StackPanel Grid.Row="1">
+                                    <Button Name="bDelete" Uid="{Binding product.ProductArticleNumber}" Content="Удалить" Click="bDelete_Click"  Template="{StaticResource Btn2}"/>
                                 </StackPanel>                                
-                                </Grid>
                             </Grid>
+                        </Grid>
                         </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Name="tbSum"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Name="tbSumDiscount"/>
+            </StackPanel>
+        </Grid>
 
-            <Grid Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center">
-                    <TextBlock Text="Пункт выдачи"/>
-                    <ComboBox Name="cbPickPoint" Style="{StaticResource CBox}" Width="350"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1" Margin="3" VerticalAlignment="Center">
-                    <TextBlock Name="tbSum"/>
-                    <TextBlock Name="tbSumDiscount"/>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Row="4">
+        <StackPanel Grid.Row="4" Orientation="Vertical" HorizontalAlignment="Left" Margin="15 5 0 5">
+            <GroupBox Header="Пункт выдачи">
+                <ComboBox Name="cbPickPoint" Style="{StaticResource CBox}" Width="350"/>
+            </GroupBox>
+        </StackPanel>
+            
+            <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
