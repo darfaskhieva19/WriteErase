@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,8 +21,8 @@ namespace WriteErase
     /// </summary>
     public partial class WindowBasket : Window
     {
-        double sum;
-        double sumDiscount;
+        double sum; //сумма
+        double sumDiscount; //скидка заказа
         List<ClassBasket> basket;
         User user;
 
@@ -59,11 +60,15 @@ namespace WriteErase
         {
             TextBox tb = (TextBox)sender;
             string index = tb.Uid;
+            ClassBasket Prbasket = basket.FirstOrDefault(z => z.product.ProductArticleNumber == index);
             if (tb.Text == "0")
-            {
-                ClassBasket Prbasket = basket.FirstOrDefault(z => z.product.ProductArticleNumber == index);
+            {                
                 basket.Remove(Prbasket);
                 ListProd.Items.Refresh();
+            }
+            if (basket.Count == 0)
+            {
+                Close();
             }
             calculSumAndDiscount();
         }
@@ -83,11 +88,8 @@ namespace WriteErase
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-                Random rnd = new Random();
-                Order order = new Order();
-                
-                int kolvoDay = 0;               
+            {                      
+                int kolvoDay = 0; //количество дней на доставку              
                 foreach(ClassBasket classBasket in basket)
                 {
                     if (classBasket.product.ProductQuantityInStock < 3)
@@ -99,6 +101,10 @@ namespace WriteErase
                         kolvoDay = 3;
                     }
                 }
+                Order order = new Order(); //создание нового заказа 
+                order.OrderStatus = DataBase.Base.OrderStatus.FirstOrDefault(x => x.OrderStatusName == "Новый").IDOrderStatus;
+                List<Order> orderL = DataBase.Base.Order.OrderBy(x => x.OrderID).ToList();
+                order.OrderID = orderL[orderL.Count - 1].OrderID + 1;
                 order.OrderDeliveryDate = order.OrderDate.AddDays(kolvoDay);
                 order.OrderPickupPoint = cbPickPoint.SelectedIndex + 1;
                 order.OrderDate = DateTime.Now;
@@ -106,7 +112,9 @@ namespace WriteErase
                 {
                     order.OrderClient = user.UserID;
                 }
-                foreach (ClassBasket classB in basket)
+                Random rnd = new Random();
+                order.OrderCode = rnd.Next(100, 800); //генерация кода                
+                foreach (ClassBasket classB in basket) 
                 {
                     OrderProduct orderProduct = new OrderProduct()
                     {

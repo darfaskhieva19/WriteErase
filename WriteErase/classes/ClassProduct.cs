@@ -34,7 +34,7 @@ namespace WriteErase
         {
             get
             {
-                if (ProductDiscountMax > 15)
+                if (ProductDiscountAmount != 0)
                 {
                     SolidColorBrush solid = new SolidColorBrush(Color.FromRgb(127, 255, 0));
                     return solid;
@@ -45,7 +45,14 @@ namespace WriteErase
                 }
             }
         }
-        public double Disc 
+        public string Disc 
+        {
+            get
+            {
+                return "Скидка: " + ProductDiscountAmount + "%";
+            }
+        }
+        public double DiscounOrder
         {
             get
             {
@@ -59,11 +66,19 @@ namespace WriteErase
                 return string.Format("{0:N2}", ProductCost) + " руб.";
             }
         }
-        public double NewCost 
+        public string NewCost 
         {
             get
             {
-                return (double)(Convert.ToDouble(ProductCost) - (Convert.ToDouble(ProductCost) * ProductDiscountAmount / 100));
+                if (ProductDiscountAmount > 0)
+                {
+                    double cost = (double)((double)ProductCost - (double)ProductCost * (ProductDiscountAmount / 100));
+                    return " " + string.Format("{0:N2}", cost) + " руб.";
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
         public double CostOrders

@@ -59,20 +59,20 @@ namespace WriteErase
                 return "Стоимость заказа: " + string.Format("{0:N2}", sum) + " руб.";
             }
         }
-        //public double SummaOrder
-        //{
-        //    get
-        //    {
-        //        double sum = 0;
-        //        List<OrderProduct> orderProducts = DataBase.Base.OrderProduct.Where(z => z.OrderID == OrderID).ToList();
-        //        foreach (OrderProduct product in orderProducts)
-        //        {
-        //            Product products = DataBase.Base.Product.FirstOrDefault(z => z.ProductArticleNumber == product.ProductArticleNumber);
-        //            sum += product.CostOrders;
-        //        }
-        //        return sum;
-        //    }
-        //}
+        public double SummaOrder
+        {
+            get
+            {
+                double sum = 0;
+                List<OrderProduct> orderProducts = DataBase.Base.OrderProduct.Where(x => x.OrderID == OrderID).ToList();
+                foreach (OrderProduct product in orderProducts)
+                {
+                    Product products = DataBase.Base.Product.FirstOrDefault(z => z.ProductArticleNumber == product.ProductArticleNumber);
+                    sum += products.CostOrders;
+                }
+                return sum;
+            }
+        }
 
         public double DiscountOrder
         {
@@ -98,7 +98,7 @@ namespace WriteErase
                 foreach (OrderProduct Pr in orderProducts)
                 {
                     Product product = DataBase.Base.Product.FirstOrDefault(z => z.ProductArticleNumber == Pr.ProductArticleNumber);
-                    sum += product.Disc;
+                    //sum += product.Disc;
                 }
                 return sum;
             }
