@@ -26,6 +26,9 @@ namespace WriteErase
             cbSort.SelectedIndex = 0;
             cbFilter.SelectedIndex = 0;
         }
+        /// <summary>
+        /// сортировка, фильтр
+        /// </summary>
         public void Filter()
         {
             List<Order> listFilter = DataBase.Base.Order.ToList();
@@ -34,10 +37,10 @@ namespace WriteErase
             switch (cbSort.SelectedIndex)
             {
                 case 1:
-                    listFilter.Sort((x, y) => x.Summ.CompareTo(y.Summ));
+                    listFilter.Sort((x, y) => x.SummaOrder.CompareTo(y.SummaOrder));
                     break;
                 case 2:
-                    listFilter.Sort((x, y) => x.Summ.CompareTo(y.Summ));
+                    listFilter.Sort((x, y) => x.SummaOrder.CompareTo(y.SummaOrder));
                     listFilter.Reverse();
                     break;
             }

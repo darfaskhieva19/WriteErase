@@ -57,6 +57,7 @@
                                     <TextBlock Text="{Binding OrderDeliveryDate, StringFormat={}dd.MM.yy}"/>                                  
                                 </StackPanel>
                                     <TextBlock Text="{Binding Summ}"/>
+                                    <TextBlock Text="{Binding DiscountS}"/>
                                     <TextBlock Text="{Binding OrderS}"/>
                                     <TextBlock Text="{Binding FIOClient}"/>
                                 </StackPanel>

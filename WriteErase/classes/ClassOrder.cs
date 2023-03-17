@@ -79,30 +79,27 @@ namespace WriteErase
             get
             {
                 double discount = 0;
+                double sum = 0;
+                double sumNew = 0;
                 List<OrderProduct> orders = DataBase.Base.OrderProduct.Where(z => z.OrderID == OrderID).ToList();
-                foreach(OrderProduct Pr in orders)
+                foreach (OrderProduct Pr in orders)
                 {
-                    Product product = DataBase.Base.Product.FirstOrDefault(z=>z.ProductArticleNumber==Pr.ProductArticleNumber);
-                    discount += product.CostOrders;
+                    Product product = DataBase.Base.Product.FirstOrDefault(z => z.ProductArticleNumber == Pr.ProductArticleNumber);
+                    sum += (double)product.ProductCost;
+                    sumNew += product.CostOrders;
                 }
+                discount = 100 - 100 * sumNew / sum;
                 return discount;
             }
         }
-
-        public double SumDiscount
+        public string DiscountS
         {
             get
             {
-                double sum = 0;
-                List<OrderProduct> orderProducts = DataBase.Base.OrderProduct.Where(x => x.OrderID == OrderID).ToList();
-                foreach (OrderProduct Pr in orderProducts)
-                {
-                    Product product = DataBase.Base.Product.FirstOrDefault(z => z.ProductArticleNumber == Pr.ProductArticleNumber);
-                    //sum += product.Disc;
-                }
-                return sum;
+                return "Общая скидка: " + string.Format("{0:N2}", DiscountOrder) + "%";
             }
         }
+
 
         public SolidColorBrush Color
         {
