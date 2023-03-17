@@ -182,7 +182,7 @@ namespace WriteErase
 
         private void btnOrder_Click(object sender, RoutedEventArgs e) //корзина
         {
-            WindowBasket windowBasket = new WindowBasket(basket);
+            WindowBasket windowBasket = new WindowBasket(basket, user);
             windowBasket.ShowDialog();
             if (basket.Count == 0)
             {

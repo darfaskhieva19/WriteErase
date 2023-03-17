@@ -1,28 +1,91 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="practic24Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category" EntityType="practic24Model.Category" />
+    <EntitySet Name="City" EntityType="practic24Model.City" />
+    <EntitySet Name="Manufacturer" EntityType="practic24Model.Manufacturer" />
+    <EntitySet Name="Order" EntityType="practic24Model.Order" />
+    <EntitySet Name="OrderProduct" EntityType="practic24Model.OrderProduct" />
+    <EntitySet Name="OrderStatus" EntityType="practic24Model.OrderStatus" />
+    <EntitySet Name="PickupPoint" EntityType="practic24Model.PickupPoint" />
+    <EntitySet Name="Product" EntityType="practic24Model.Product" />
+    <EntitySet Name="Provider" EntityType="practic24Model.Provider" />
+    <EntitySet Name="Role" EntityType="practic24Model.Role" />
+    <EntitySet Name="TitleProduct" EntityType="practic24Model.TitleProduct" />
+    <EntitySet Name="UnitOfMeasurement" EntityType="practic24Model.UnitOfMeasurement" />
+    <EntitySet Name="User" EntityType="practic24Model.User" />
+    <AssociationSet Name="FK_Product_Category" Association="practic24Model.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PickupPoint_City" Association="practic24Model.FK_PickupPoint_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="PickupPoint" EntitySet="PickupPoint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Manufacturer" Association="practic24Model.FK_Product_Manufacturer">
+      <End Role="Manufacturer" EntitySet="Manufacturer" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_OrderStatus" Association="practic24Model.FK_Order_OrderStatus">
+      <End Role="OrderStatus" EntitySet="OrderStatus" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_PickupPoint" Association="practic24Model.FK_Order_PickupPoint">
+      <End Role="PickupPoint" EntitySet="PickupPoint" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User" Association="practic24Model.FK_Order_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProduct_Order" Association="practic24Model.FK_OrderProduct_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderProduct" EntitySet="OrderProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProduct_Product" Association="practic24Model.FK_OrderProduct_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderProduct" EntitySet="OrderProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Provider" Association="practic24Model.FK_Product_Provider">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_TitleProduct" Association="practic24Model.FK_Product_TitleProduct">
+      <End Role="TitleProduct" EntitySet="TitleProduct" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_UnitOfMeasurement" Association="practic24Model.FK_Product_UnitOfMeasurement">
+      <End Role="UnitOfMeasurement" EntitySet="UnitOfMeasurement" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__UserRole__398D8EEE" Association="practic24Model.FK__User__UserRole__398D8EEE">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="Category">
     <Key>
       <PropertyRef Name="IDCategory" />
     </Key>
     <Property Name="IDCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="practic24Model.FK_Product_Category" FromRole="Category" ToRole="Product" />
   </EntityType>
   <EntityType Name="City">
     <Key>
       <PropertyRef Name="IDCIty" />
     </Key>
     <Property Name="IDCIty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CityName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="PickupPoint" Relationship="Self.FK_PickupPoint_City" FromRole="City" ToRole="PickupPoint" />
+    <Property Name="CityName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PickupPoint" Relationship="practic24Model.FK_PickupPoint_City" FromRole="City" ToRole="PickupPoint" />
   </EntityType>
   <EntityType Name="Manufacturer">
     <Key>
       <PropertyRef Name="IDManufacturer" />
     </Key>
     <Property Name="IDManufacturer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ProductManufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Manufacturer" FromRole="Manufacturer" ToRole="Product" />
+    <Property Name="ProductManufacturer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="practic24Model.FK_Product_Manufacturer" FromRole="Manufacturer" ToRole="Product" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -33,11 +96,12 @@
     <Property Name="OrderDeliveryDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="OrderPickupPoint" Type="Int32" Nullable="false" />
     <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="OrderClient" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OrderClient" Type="Int32" />
     <Property Name="OrderCode" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="OrderStatus1" Relationship="Self.FK_Order_OrderStatus" FromRole="Order" ToRole="OrderStatus" />
-    <NavigationProperty Name="PickupPoint" Relationship="Self.FK_Order_PickupPoint" FromRole="Order" ToRole="PickupPoint" />
-    <NavigationProperty Name="OrderProduct" Relationship="Self.FK_OrderProduct_Order" FromRole="Order" ToRole="OrderProduct" />
+    <NavigationProperty Name="OrderStatus1" Relationship="practic24Model.FK_Order_OrderStatus" FromRole="Order" ToRole="OrderStatus" />
+    <NavigationProperty Name="PickupPoint" Relationship="practic24Model.FK_Order_PickupPoint" FromRole="Order" ToRole="PickupPoint" />
+    <NavigationProperty Name="User" Relationship="practic24Model.FK_Order_User" FromRole="Order" ToRole="User" />
+    <NavigationProperty Name="OrderProduct" Relationship="practic24Model.FK_OrderProduct_Order" FromRole="Order" ToRole="OrderProduct" />
   </EntityType>
   <EntityType Name="OrderProduct">
     <Key>
@@ -45,36 +109,36 @@
     </Key>
     <Property Name="OrderProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="OrderID" Type="Int32" Nullable="false" />
-    <Property Name="ProductArticleNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductArticleNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="ProductCount" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Order" Relationship="Self.FK_OrderProduct_Order" FromRole="OrderProduct" ToRole="Order" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_OrderProduct_Product" FromRole="OrderProduct" ToRole="Product" />
+    <NavigationProperty Name="Order" Relationship="practic24Model.FK_OrderProduct_Order" FromRole="OrderProduct" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="practic24Model.FK_OrderProduct_Product" FromRole="OrderProduct" ToRole="Product" />
   </EntityType>
   <EntityType Name="OrderStatus">
     <Key>
       <PropertyRef Name="IDOrderStatus" />
     </Key>
     <Property Name="IDOrderStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="OrderStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Order" Relationship="Self.FK_Order_OrderStatus" FromRole="OrderStatus" ToRole="Order" />
+    <Property Name="OrderStatusName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Order" Relationship="practic24Model.FK_Order_OrderStatus" FromRole="OrderStatus" ToRole="Order" />
   </EntityType>
   <EntityType Name="PickupPoint">
     <Key>
       <PropertyRef Name="IDPickupPoint" />
     </Key>
     <Property Name="IDPickupPoint" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PostCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="City" Type="Int32" Nullable="false" />
-    <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Street" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="NumberHome" Type="Int32" />
-    <NavigationProperty Name="City1" Relationship="Self.FK_PickupPoint_City" FromRole="PickupPoint" ToRole="City" />
-    <NavigationProperty Name="Order" Relationship="Self.FK_Order_PickupPoint" FromRole="PickupPoint" ToRole="Order" />
+    <NavigationProperty Name="City1" Relationship="practic24Model.FK_PickupPoint_City" FromRole="PickupPoint" ToRole="City" />
+    <NavigationProperty Name="Order" Relationship="practic24Model.FK_Order_PickupPoint" FromRole="PickupPoint" ToRole="Order" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
       <PropertyRef Name="ProductArticleNumber" />
     </Key>
-    <Property Name="ProductArticleNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductArticleNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="ProductName" Type="Int32" Nullable="false" />
     <Property Name="ProductUnit" Type="Int32" Nullable="false" />
     <Property Name="ProductDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -82,66 +146,67 @@
     <Property Name="ProductCategory" Type="Int32" Nullable="false" />
     <Property Name="ProductProvider" Type="Int32" Nullable="false" />
     <Property Name="ProductManufacturer" Type="Int32" Nullable="false" />
-    <Property Name="ProductCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="ProductCost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="ProductDiscountMax" Type="Double" />
     <Property Name="ProductDiscountAmount" Type="Double" />
     <Property Name="ProductQuantityInStock" Type="Int32" Nullable="false" />
     <Property Name="ProductStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
-    <NavigationProperty Name="Manufacturer" Relationship="Self.FK_Product_Manufacturer" FromRole="Product" ToRole="Manufacturer" />
-    <NavigationProperty Name="OrderProduct" Relationship="Self.FK_OrderProduct_Product" FromRole="Product" ToRole="OrderProduct" />
-    <NavigationProperty Name="Provider" Relationship="Self.FK_Product_Provider" FromRole="Product" ToRole="Provider" />
-    <NavigationProperty Name="TitleProduct" Relationship="Self.FK_Product_TitleProduct" FromRole="Product" ToRole="TitleProduct" />
-    <NavigationProperty Name="UnitOfMeasurement" Relationship="Self.FK_Product_UnitOfMeasurement" FromRole="Product" ToRole="UnitOfMeasurement" />
+    <NavigationProperty Name="Category" Relationship="practic24Model.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Manufacturer" Relationship="practic24Model.FK_Product_Manufacturer" FromRole="Product" ToRole="Manufacturer" />
+    <NavigationProperty Name="OrderProduct" Relationship="practic24Model.FK_OrderProduct_Product" FromRole="Product" ToRole="OrderProduct" />
+    <NavigationProperty Name="Provider" Relationship="practic24Model.FK_Product_Provider" FromRole="Product" ToRole="Provider" />
+    <NavigationProperty Name="TitleProduct" Relationship="practic24Model.FK_Product_TitleProduct" FromRole="Product" ToRole="TitleProduct" />
+    <NavigationProperty Name="UnitOfMeasurement" Relationship="practic24Model.FK_Product_UnitOfMeasurement" FromRole="Product" ToRole="UnitOfMeasurement" />
   </EntityType>
   <EntityType Name="Provider">
     <Key>
       <PropertyRef Name="ProviderID" />
     </Key>
     <Property Name="ProviderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ProviderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Provider" FromRole="Provider" ToRole="Product" />
+    <Property Name="ProviderName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="practic24Model.FK_Product_Provider" FromRole="Provider" ToRole="Product" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="RoleID" />
     </Key>
     <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="User" Relationship="Self.FK__User__UserRole__398D8EEE" FromRole="Role" ToRole="User" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="practic24Model.FK__User__UserRole__398D8EEE" FromRole="Role" ToRole="User" />
   </EntityType>
   <EntityType Name="TitleProduct">
     <Key>
       <PropertyRef Name="IDTitleProduct" />
     </Key>
     <Property Name="IDTitleProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TitleProduct1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_Product_TitleProduct" FromRole="TitleProduct" ToRole="Product" />
+    <Property Name="TitleProduct1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="practic24Model.FK_Product_TitleProduct" FromRole="TitleProduct" ToRole="Product" />
   </EntityType>
   <EntityType Name="UnitOfMeasurement">
     <Key>
       <PropertyRef Name="UnitID" />
     </Key>
     <Property Name="UnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UnitOfMeasurement1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_Product_UnitOfMeasurement" FromRole="UnitOfMeasurement" ToRole="Product" />
+    <Property Name="UnitOfMeasurement1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="practic24Model.FK_Product_UnitOfMeasurement" FromRole="UnitOfMeasurement" ToRole="Product" />
   </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="UserID" />
     </Key>
     <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="UserPatronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="UserLogin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="UserPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserSurname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserPatronymic" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="UserRole" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Role" Relationship="Self.FK__User__UserRole__398D8EEE" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Order" Relationship="practic24Model.FK_Order_User" FromRole="User" ToRole="Order" />
+    <NavigationProperty Name="Role" Relationship="practic24Model.FK__User__UserRole__398D8EEE" FromRole="User" ToRole="Role" />
   </EntityType>
   <Association Name="FK_Product_Category">
-    <End Role="Category" Type="Self.Category" Multiplicity="1" />
-    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <End Type="practic24Model.Category" Role="Category" Multiplicity="1" />
+    <End Type="practic24Model.Product" Role="Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Category">
         <PropertyRef Name="IDCategory" />
@@ -152,8 +217,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PickupPoint_City">
-    <End Role="City" Type="Self.City" Multiplicity="1" />
-    <End Role="PickupPoint" Type="Self.PickupPoint" Multiplicity="*" />
+    <End Type="practic24Model.City" Role="City" Multiplicity="1" />
+    <End Type="practic24Model.PickupPoint" Role="PickupPoint" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="City">
         <PropertyRef Name="IDCIty" />
@@ -164,8 +229,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Product_Manufacturer">
-    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
-    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <End Type="practic24Model.Manufacturer" Role="Manufacturer" Multiplicity="1" />
+    <End Type="practic24Model.Product" Role="Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Manufacturer">
         <PropertyRef Name="IDManufacturer" />
@@ -176,8 +241,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Order_OrderStatus">
-    <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <End Type="practic24Model.OrderStatus" Role="OrderStatus" Multiplicity="1" />
+    <End Type="practic24Model.Order" Role="Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="OrderStatus">
         <PropertyRef Name="IDOrderStatus" />
@@ -188,8 +253,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Order_PickupPoint">
-    <End Role="PickupPoint" Type="Self.PickupPoint" Multiplicity="1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <End Type="practic24Model.PickupPoint" Role="PickupPoint" Multiplicity="1" />
+    <End Type="practic24Model.Order" Role="Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PickupPoint">
         <PropertyRef Name="IDPickupPoint" />
@@ -199,9 +264,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Order_User">
+    <End Type="practic24Model.User" Role="User" Multiplicity="0..1" />
+    <End Type="practic24Model.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="OrderClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_OrderProduct_Order">
-    <End Role="Order" Type="Self.Order" Multiplicity="1" />
-    <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+    <End Type="practic24Model.Order" Role="Order" Multiplicity="1" />
+    <End Type="practic24Model.OrderProduct" Role="OrderProduct" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Order">
         <PropertyRef Name="OrderID" />
@@ -212,8 +289,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderProduct_Product">
-    <End Role="Product" Type="Self.Product" Multiplicity="1" />
-    <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+    <End Type="practic24Model.Product" Role="Product" Multiplicity="1" />
+    <End Type="practic24Model.OrderProduct" Role="OrderProduct" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">
         <PropertyRef Name="ProductArticleNumber" />
@@ -224,8 +301,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Product_Provider">
-    <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
-    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <End Type="practic24Model.Provider" Role="Provider" Multiplicity="1" />
+    <End Type="practic24Model.Product" Role="Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Provider">
         <PropertyRef Name="ProviderID" />
@@ -236,8 +313,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Product_TitleProduct">
-    <End Role="TitleProduct" Type="Self.TitleProduct" Multiplicity="1" />
-    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <End Type="practic24Model.TitleProduct" Role="TitleProduct" Multiplicity="1" />
+    <End Type="practic24Model.Product" Role="Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TitleProduct">
         <PropertyRef Name="IDTitleProduct" />
@@ -248,8 +325,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Product_UnitOfMeasurement">
-    <End Role="UnitOfMeasurement" Type="Self.UnitOfMeasurement" Multiplicity="1" />
-    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <End Type="practic24Model.UnitOfMeasurement" Role="UnitOfMeasurement" Multiplicity="1" />
+    <End Type="practic24Model.Product" Role="Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UnitOfMeasurement">
         <PropertyRef Name="UnitID" />
@@ -260,8 +337,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__User__UserRole__398D8EEE">
-    <End Role="Role" Type="Self.Role" Multiplicity="1" />
-    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <End Type="practic24Model.Role" Role="Role" Multiplicity="1" />
+    <End Type="practic24Model.User" Role="User" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Role">
         <PropertyRef Name="RoleID" />
@@ -271,63 +348,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Category" EntityType="Self.Category" />
-    <EntitySet Name="City" EntityType="Self.City" />
-    <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" />
-    <EntitySet Name="Order" EntityType="Self.Order" />
-    <EntitySet Name="OrderProduct" EntityType="Self.OrderProduct" />
-    <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" />
-    <EntitySet Name="PickupPoint" EntityType="Self.PickupPoint" />
-    <EntitySet Name="Product" EntityType="Self.Product" />
-    <EntitySet Name="Provider" EntityType="Self.Provider" />
-    <EntitySet Name="Role" EntityType="Self.Role" />
-    <EntitySet Name="TitleProduct" EntityType="Self.TitleProduct" />
-    <EntitySet Name="UnitOfMeasurement" EntityType="Self.UnitOfMeasurement" />
-    <EntitySet Name="User" EntityType="Self.User" />
-    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
-      <End Role="Category" EntitySet="Category" />
-      <End Role="Product" EntitySet="Product" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PickupPoint_City" Association="Self.FK_PickupPoint_City">
-      <End Role="City" EntitySet="City" />
-      <End Role="PickupPoint" EntitySet="PickupPoint" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Product_Manufacturer" Association="Self.FK_Product_Manufacturer">
-      <End Role="Manufacturer" EntitySet="Manufacturer" />
-      <End Role="Product" EntitySet="Product" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Order_OrderStatus" Association="Self.FK_Order_OrderStatus">
-      <End Role="OrderStatus" EntitySet="OrderStatus" />
-      <End Role="Order" EntitySet="Order" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Order_PickupPoint" Association="Self.FK_Order_PickupPoint">
-      <End Role="PickupPoint" EntitySet="PickupPoint" />
-      <End Role="Order" EntitySet="Order" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderProduct_Order" Association="Self.FK_OrderProduct_Order">
-      <End Role="Order" EntitySet="Order" />
-      <End Role="OrderProduct" EntitySet="OrderProduct" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderProduct_Product" Association="Self.FK_OrderProduct_Product">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="OrderProduct" EntitySet="OrderProduct" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Product_Provider" Association="Self.FK_Product_Provider">
-      <End Role="Provider" EntitySet="Provider" />
-      <End Role="Product" EntitySet="Product" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Product_TitleProduct" Association="Self.FK_Product_TitleProduct">
-      <End Role="TitleProduct" EntitySet="TitleProduct" />
-      <End Role="Product" EntitySet="Product" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Product_UnitOfMeasurement" Association="Self.FK_Product_UnitOfMeasurement">
-      <End Role="UnitOfMeasurement" EntitySet="UnitOfMeasurement" />
-      <End Role="Product" EntitySet="Product" />
-    </AssociationSet>
-    <AssociationSet Name="FK__User__UserRole__398D8EEE" Association="Self.FK__User__UserRole__398D8EEE">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="User" EntitySet="User" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

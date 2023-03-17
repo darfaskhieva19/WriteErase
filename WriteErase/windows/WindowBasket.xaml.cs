@@ -22,11 +22,13 @@ namespace WriteErase
         double sum;
         double sumDiscount;
         List<ClassBasket> basket;
+        User user;
 
-        public WindowBasket(List<ClassBasket> basket)
+        public WindowBasket(List<ClassBasket> basket, User user)
         {
             InitializeComponent();
             this.basket = basket;
+            this.user = user;
             ListProd.ItemsSource = basket;
             cbPickPoint.SelectedIndex = 0;
             List<PickupPoint> pickupPoints = DataBase.Base.PickupPoint.ToList();
@@ -34,44 +36,62 @@ namespace WriteErase
             {
                 cbPickPoint.Items.Add(pickupPoints[i].PostCode + ", " + pickupPoints[i].City1.CityName + ", " + pickupPoints[i].Street + ", " + pickupPoints[i].NumberHome);
             }
+            if (user != null)
+            {
+                tbFIO.Text = " " + user.UserSurname + " " + user.UserName + " " + user.UserPatronymic;
+            }
+            calculSumAndDiscount();
+            tbSum.Text = "Сумма заказа: " + string.Format("{0:N2}", sum) + " руб.";
+            tbSumDiscount.Text = "Скидка: " + sumDiscount + "%";
         }
         private void btDelete_Click(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;
-            string index = btn.Uid;
+        {            
             if (MessageBox.Show("Вы действительно хотите удалить данный товар?", "Системное сообщение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
+                Button btn = (Button)sender;
+                string index = btn.Uid;
                 ClassBasket classBasket = basket.FirstOrDefault(z => z.product.ProductArticleNumber == index);
                 basket.Remove(classBasket);
-                if(basket.Count == 0)
+                if (basket.Count == 0)
                 {
                     Close();
                 }
                 ListProd.Items.Refresh();
+                calculSumAndDiscount();
             }
         }
+        private void calculSumAndDiscount()
+        {
+            sum = 0; sumDiscount = 0;
+            foreach(ClassBasket classBasket in basket)
+            {
+                sum+= classBasket.count * classBasket.product.CostOrders;
+                sumDiscount += classBasket.count * ((double)classBasket.product.ProductCost - classBasket.product.CostOrders);
+            }
+        } 
         private void tbKolvo_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextBox tb = (TextBox)sender;
-            string index = tb.Uid;
-            ClassBasket Prbasket = basket.FirstOrDefault(z => z.product.ProductArticleNumber == index);
-            if (tb.Text.Replace(" ", "") == "")
-            {
-                Prbasket.count = 0;
-            }
-            else
-            {
-                Prbasket.count = Convert.ToInt32(tb.Text);
-            }
-            if (Prbasket.count == 0)
-            {
-                basket.Remove(Prbasket);
-            }
-            if (basket.Count == 0)
-            {
-                this.Close();
-            }
-            ListProd.Items.Refresh();
+            //TextBox tb = (TextBox)sender;
+            //string index = tb.Uid;
+            //ClassBasket Prbasket = basket.FirstOrDefault(z => z.product.ProductArticleNumber == index);
+            //if (tb.Text.Replace(" ", "") == "")
+            //{
+            //    Prbasket.count = 0;
+            //}
+            //else
+            //{
+            //    Prbasket.count = Convert.ToInt32(tb.Text);
+            //}
+            //if (Prbasket.count == 0)
+            //{
+            //    basket.Remove(Prbasket);
+            //}
+            //if (basket.Count == 0)
+            //{
+            //    this.Close();
+            //}
+            //ListProd.Items.Refresh();
+            calculSumAndDiscount();
         }
 
         private void tbKolvo_PreviewTextInput(object sender, TextCompositionEventArgs e) //запрет символов
@@ -88,7 +108,18 @@ namespace WriteErase
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-
+            Order order = new Order();
+            int kolvoDay = 0;
+            List<Order> orders = DataBase.Base.Order.ToList();
+            //order.OrderID=orders.
+            order.OrderStatus = DataBase.Base.OrderStatus.FirstOrDefault(z => z.OrderStatusName == "Новый").IDOrderStatus;
+            order.OrderDate = DateTime.Now;
+            order.OrderDeliveryDate = order.OrderDate.AddDays(kolvoDay);
+            order.OrderPickupPoint = (int)cbPickPoint.SelectedItem;
+            if (user != null)
+            {
+                order.OrderClient = user.UserID;
+            }
         }
     }
 }
