@@ -100,3 +100,5 @@ C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\Write
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\WriteErase.csproj.GenerateResource.cache
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\WriteErase.csproj.CoreCompileInputs.cache
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\WriteErase.csproj.CopyComplete
+C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\windows\WindowDateDelivery.g.cs
+C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\windows\WindowDateDelivery.baml

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,19 +15,16 @@ using System.Windows.Shapes;
 namespace WriteErase
 {
     /// <summary>
-    /// Логика взаимодействия для WindowStatus.xaml
+    /// Логика взаимодействия для WindowDateDelivery.xaml
     /// </summary>
-    public partial class WindowStatus : Window
+    public partial class WindowDateDelivery : Window
     {
-        Order Order;
-        public WindowStatus(Order Order)
+        Order order;
+        public WindowDateDelivery(Order order)
         {
             InitializeComponent();
-            this.Order = Order;
-            cbStatus.ItemsSource = DataBase.Base.OrderStatus.ToList();
-            cbStatus.SelectedValuePath = "IDOrderStatus";
-            cbStatus.DisplayMemberPath = "OrderStatusName";
-            cbStatus.SelectedValue = Order.OrderStatus;
+            this.order = order;
+            dpDate.SelectedDate = order.OrderDeliveryDate;
         }
 
         private void bBack_Click(object sender, RoutedEventArgs e)
@@ -40,7 +36,7 @@ namespace WriteErase
         {
             try
             {
-                Order.OrderStatus = cbStatus.SelectedIndex + 1;
+                order.OrderDeliveryDate = (DateTime)dpDate.SelectedDate;
                 DataBase.Base.SaveChanges();
                 Close();
             }

@@ -71,6 +71,15 @@ namespace WriteErase
         } 
         private void tbKolvo_TextChanged(object sender, TextChangedEventArgs e)
         {
+            TextBox tb = (TextBox)sender;
+            string index = tb.Uid;
+            if (tb.Text == "0")
+            {
+                ClassBasket Prbasket = basket.FirstOrDefault(z => z.product.ProductArticleNumber == index);
+                basket.Remove(Prbasket);
+                ListProd.Items.Refresh();
+            }
+
             //TextBox tb = (TextBox)sender;
             //string index = tb.Uid;
             //ClassBasket Prbasket = basket.FirstOrDefault(z => z.product.ProductArticleNumber == index);
@@ -108,17 +117,52 @@ namespace WriteErase
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-            Order order = new Order();
-            int kolvoDay = 0;
-            List<Order> orders = DataBase.Base.Order.ToList();
-            //order.OrderID=orders.
-            order.OrderStatus = DataBase.Base.OrderStatus.FirstOrDefault(z => z.OrderStatusName == "Новый").IDOrderStatus;
-            order.OrderDate = DateTime.Now;
-            order.OrderDeliveryDate = order.OrderDate.AddDays(kolvoDay);
-            order.OrderPickupPoint = (int)cbPickPoint.SelectedItem;
-            if (user != null)
+            try
             {
-                order.OrderClient = user.UserID;
+                Random rnd = new Random();
+                bool three = true;
+               
+                foreach(ClassBasket classBasket in basket)
+                {
+                    if (classBasket.product.ProductQuantityInStock < 3)
+                    {
+                        three = false;
+                    }
+                }
+                Order order = new Order();
+                if (three == true)
+                {
+                    order.OrderDeliveryDate = DateTime.Now.AddDays(3);
+                }
+                else
+                {
+                    order.OrderDeliveryDate = DateTime.Now.AddDays(6);
+                }
+                if (cbPickPoint.SelectedIndex != 0)
+                {
+                    foreach (ClassBasket classB in basket)
+                    {
+                        OrderProduct orderProduct = new OrderProduct()
+                        {
+                            OrderID = order.OrderID,
+                            ProductArticleNumber = classB.product.ProductArticleNumber,
+                            ProductCount = classB.count
+                        };
+                        DataBase.Base.OrderProduct.Add(orderProduct);
+                    }
+                    DataBase.Base.SaveChanges();
+                    MessageBox.Show("Успешное добавление заказа!");
+                    basket.Clear();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Выберите из списка пункт выдачи!");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Что-то пошло не так..");
             }
         }
     }

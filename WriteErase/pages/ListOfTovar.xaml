@@ -81,8 +81,8 @@
                                     <TextBlock Text="{Binding NewCost}" />
                                 </StackPanel>
                             </StackPanel>
-                            <StackPanel Grid.Column="2">
-                                <TextBlock Text="{Binding Disc}"/>
+                            <StackPanel Grid.Column="2" >
+                                <TextBlock Text="{Binding Disc, StringFormat={}{0}%}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 <Button Name="btnDelete" Uid="{Binding ProductArticleNumber}" Content="Удалить" Click="btnDelete_Click"  Loaded="btnDelete_Loaded" Visibility="Collapsed" Template="{StaticResource Btn1}"/>
                             </StackPanel>
                         </Grid>

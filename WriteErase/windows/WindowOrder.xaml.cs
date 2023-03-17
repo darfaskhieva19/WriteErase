@@ -19,19 +19,16 @@ namespace WriteErase
     /// </summary>
     public partial class WindowOrder : Window
     {
-        User user;
-        List<Order> listFilter;
         public WindowOrder()
         {
             InitializeComponent();
-
             lvOrder.ItemsSource = DataBase.Base.Order.ToList();
             cbSort.SelectedIndex = 0;
             cbFilter.SelectedIndex = 0;
         }
         public void Filter()
         {
-            listFilter = DataBase.Base.Order.ToList();
+            List<Order> listFilter = DataBase.Base.Order.ToList();
 
             //сортировка
             switch (cbSort.SelectedIndex)
@@ -48,15 +45,15 @@ namespace WriteErase
             //фильтр
             switch (cbFilter.SelectedIndex)
             {
-                //case 1:
-                //    listFilter = listFilter.Where(x => x.ProductDiscountAmount > 0 && x.ProductDiscountAmount < 9.99).ToList();
-                //    break;
-                //case 2:
-                //    listFilter = listFilter.Where(x => x.ProductDiscountAmount > 10 && x.ProductDiscountAmount < 14.99).ToList();
-                //    break;
-                //case 3:
-                //    listFilter = listFilter.Where(x => x.ProductDiscountAmount > 15).ToList();
-                //    break;
+                case 1:
+                    listFilter = listFilter.Where(x => x.DiscountOrder < 11).ToList();
+                    break;
+                case 2:
+                    listFilter = listFilter.Where(x => x.DiscountOrder > 10 && x.DiscountOrder < 15).ToList();
+                    break;
+                case 3:
+                    listFilter = listFilter.Where(x => x.DiscountOrder > 15).ToList();
+                    break;
             }
             lvOrder.ItemsSource = listFilter;
             if (listFilter.Count == 0)
@@ -82,13 +79,20 @@ namespace WriteErase
 
         private void btnUpDate_Click(object sender, RoutedEventArgs e)
         {
-
+            Button btn = (Button)sender;
+            int index = Convert.ToInt32(btn.Uid);
+            Order order = DataBase.Base.Order.FirstOrDefault(z => z.OrderID == index);
+            WindowDateDelivery dateDelivery = new WindowDateDelivery(order);
+            dateDelivery.ShowDialog();
         }
 
         private void btnStatus_Click(object sender, RoutedEventArgs e)
         {
-            //WindowStatus status = new WindowStatus();
-            //status.ShowDialog();
+            Button btn = (Button)sender;
+            int index = Convert.ToInt32(btn.Uid);
+            Order order = DataBase.Base.Order.FirstOrDefault(z=>z.OrderID==index);
+            WindowStatus windowStatus = new WindowStatus(order);
+            windowStatus.ShowDialog();
         }
     }
 }

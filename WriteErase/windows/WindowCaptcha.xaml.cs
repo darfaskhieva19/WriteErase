@@ -104,8 +104,9 @@ namespace WriteErase
                 else
                 {
                     MessageBox.Show("CAPTCHA введена неверно!", "Ошибка");
-                    ClassFrame.frameL.Navigate(new PageAuto(1));
                     Close();
+                    ClassFrame.frameL.Navigate(new PageAuto(1));
+                    
                 }
             }
         }

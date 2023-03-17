@@ -48,6 +48,9 @@ namespace WriteErase
             }
             Filter();
         }
+        /// <summary>
+        /// поиск, сортировка, фильтрация
+        /// </summary>
         public void Filter()
         {
             listFilter = DataBase.Base.Product.ToList();
@@ -150,23 +153,20 @@ namespace WriteErase
                 Button btn = (Button)sender;
                 string index = btn.Uid;
                 if (MessageBox.Show("Вы действительно хотите удалить данный товар?", "Системное сообщение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                {
-                    Product product = DataBase.Base.Product.FirstOrDefault(z => z.ProductArticleNumber == index);
+                {                  
                     List<OrderProduct> orderProducts = DataBase.Base.OrderProduct.Where(x => x.ProductArticleNumber == index).ToList();
                     if (orderProducts.Count == 0)
                     {
-                        foreach (OrderProduct OProducts in orderProducts)
-                        {
-                            DataBase.Base.OrderProduct.Remove(OProducts);
-                        }
+                        Product product = DataBase.Base.Product.FirstOrDefault(z => z.ProductArticleNumber == index);
                         DataBase.Base.Product.Remove(product);
                         DataBase.Base.SaveChanges();
+                        ClassFrame.frameL.Navigate(new ListOfTovar(user));
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Товар невозможно удалить, потому что он есть в заказе!");
-                }
+                    else
+                    {
+                        MessageBox.Show("Товар невозможно удалить, потому что он есть в заказе!");
+                    }
+                }                
             }
             catch
             {

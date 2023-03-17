@@ -79,11 +79,10 @@ namespace WriteErase
                 {
                     MessageBox.Show("Вы ввели данные неверно! Повторите вход!");
                     btAuto.IsEnabled = false;
-                    CAPTCHA();
+                    CAPTCHA();                    
                 }
                 else
                 {
-                    CAPTCHA();
                     switch (user.UserRole)
                     {
                         case 1: //клиент

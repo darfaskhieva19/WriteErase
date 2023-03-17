@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WriteErase"
         mc:Ignorable="d"
-         Title="ООО «Пиши-стирай»" Height="700" Width="950" Icon="\resource\icon.ico">
+         Title="ООО «Пиши-стирай»" Height="700" Width="1000" Icon="\resource\icon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>

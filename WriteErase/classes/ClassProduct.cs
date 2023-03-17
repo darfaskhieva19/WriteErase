@@ -45,11 +45,11 @@ namespace WriteErase
                 }
             }
         }
-        public string Disc 
+        public double Disc 
         {
             get
             {
-                return "Скидка " + ProductDiscountAmount + " %";
+                return (double)ProductDiscountAmount;
             }
         }
         public string Price 
