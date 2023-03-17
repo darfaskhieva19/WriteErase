@@ -10,7 +10,7 @@
 
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center" Text="Авторизация" Style="{StaticResource txtHeader}" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Center" Text="Авторизация" Style="{StaticResource txtHeader}"/>
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Введите логин"/>
                 <TextBox Name="tbLogin" Style="{StaticResource TB}"/>

@@ -120,51 +120,41 @@ namespace WriteErase
             try
             {
                 Random rnd = new Random();
-                bool three = true;
-               
+                Order order = new Order();
+                
+                int kolvoDay = 0;               
                 foreach(ClassBasket classBasket in basket)
                 {
                     if (classBasket.product.ProductQuantityInStock < 3)
                     {
-                        three = false;
+                        kolvoDay = 6;
                     }
-                }
-                Order order = new Order();
-                if (three == true)
-                {
-                    order.OrderDeliveryDate = DateTime.Now.AddDays(3);
-                }
-                else
-                {
-                    order.OrderDeliveryDate = DateTime.Now.AddDays(6);
-                }
-                if (cbPickPoint.SelectedIndex != 0)
-                {
-                    order.OrderPickupPoint = cbPickPoint.SelectedIndex;
-                    order.OrderDate = DateTime.Now;
-                    if (user != null)
+                    else
                     {
-                        order.OrderClient = user.UserID;
+                        kolvoDay = 3;
                     }
-                    foreach (ClassBasket classB in basket)
-                    {
-                        OrderProduct orderProduct = new OrderProduct()
-                        {
-                            OrderID = order.OrderID,
-                            ProductArticleNumber = classB.product.ProductArticleNumber,
-                            ProductCount = classB.count
-                        };
-                        DataBase.Base.OrderProduct.Add(orderProduct);
-                    }
-                    DataBase.Base.SaveChanges();
-                    MessageBox.Show("Успешное добавление заказа!");
-                    basket.Clear();
-                    Close();
                 }
-                else
+                order.OrderDeliveryDate = order.OrderDate.AddDays(kolvoDay);
+                order.OrderPickupPoint = cbPickPoint.SelectedIndex + 1;
+                order.OrderDate = DateTime.Now;
+                if (user != null)
                 {
-                    MessageBox.Show("Выберите из списка пункт выдачи!");
+                    order.OrderClient = user.UserID;
                 }
+                foreach (ClassBasket classB in basket)
+                {
+                    OrderProduct orderProduct = new OrderProduct()
+                    {
+                        OrderID = order.OrderID,
+                        ProductArticleNumber = classB.product.ProductArticleNumber,
+                        ProductCount = classB.count
+                    };
+                    DataBase.Base.OrderProduct.Add(orderProduct);
+                }
+                DataBase.Base.SaveChanges();
+                MessageBox.Show("Успешное добавление заказа!");
+                basket.Clear();
+                Close();
             }
             catch
             {

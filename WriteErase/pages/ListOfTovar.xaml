@@ -13,15 +13,18 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.4*"/>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="6*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Name="tbFIO" Grid.Row="0"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 30 0"/>
+        <TextBlock Text="Товары" Grid.Row="0"  Style="{StaticResource txtHeader}"/>
+        
+        <TextBlock Name="tbFIO" Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 30 0"/>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="1.5*"/>
@@ -58,7 +61,7 @@
             </StackPanel>
         </Grid>
 
-        <ListView Name="ListT" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+        <ListView Name="ListT" Grid.Row="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border Padding="1" CornerRadius="5" BorderThickness="0.5" BorderBrush="Black" >
@@ -96,7 +99,7 @@
             </ListView.ContextMenu>
         </ListView>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" >
+        <StackPanel Grid.Row="4" Orientation="Horizontal" >
             <Button Name="btnBack" Content="Вернуться" Click="btnBack_Click" Template="{StaticResource Btn}"/>
             <Button Name="btnOrder" Content="Корзина" Click="btnOrder_Click" Template="{StaticResource Btn}" Visibility="Collapsed"/>
             <Button Name="btnZakaz" Content="Просмотр заказов" Click="btnZakaz_Click" Visibility="Collapsed" HorizontalAlignment="Right" Template="{StaticResource Btn}"/>
