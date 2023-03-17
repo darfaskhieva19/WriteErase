@@ -42,20 +42,21 @@ namespace WriteErase
             {
                 tbFIO.Text = " " + user.UserSurname + " " + user.UserName + " " + user.UserPatronymic;
             }
-            calculSumAndDiscount();            
-        }
-        
-        private void calculSumAndDiscount()
-        {
-            sum = 0; sumDiscount = 0;
-            foreach(ClassBasket classBasket in basket)
-            {
-                sum+= classBasket.count * classBasket.product.CostOrders;
-                sumDiscount += classBasket.count * ((double)classBasket.product.ProductCost - classBasket.product.CostOrders);
-            }
+            calc();
             tbSum.Text = "Сумма заказа: " + string.Format("{0:N2}", sum) + " руб.";
             tbSumDiscount.Text = "Скидка: " + sumDiscount + "%";
-        } 
+            
+        }     
+        private void calc()
+        {
+            sum = 0; sumDiscount = 0;
+            foreach (ClassBasket classBasket in basket)
+            {
+                sum += classBasket.count * classBasket.product.CostOrders;
+                sumDiscount += classBasket.count * ((double)classBasket.product.ProductCost - classBasket.product.CostOrders);
+            }
+        }
+        
         private void tbKolvo_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox tb = (TextBox)sender;
@@ -69,8 +70,7 @@ namespace WriteErase
             if (basket.Count == 0)
             {
                 Close();
-            }
-            calculSumAndDiscount();
+            }            
         }
 
         private void tbKolvo_PreviewTextInput(object sender, TextCompositionEventArgs e) //запрет символов
@@ -88,9 +88,9 @@ namespace WriteErase
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
             try
-            {                      
-                int kolvoDay = 0; //количество дней на доставку              
-                foreach(ClassBasket classBasket in basket)
+            {
+                int kolvoDay = 0; //количество дней на доставку   
+                foreach (ClassBasket classBasket in basket)
                 {
                     if (classBasket.product.ProductQuantityInStock < 3)
                     {
@@ -113,21 +113,22 @@ namespace WriteErase
                     order.OrderClient = user.UserID;
                 }
                 Random rnd = new Random();
-                order.OrderCode = rnd.Next(100, 800); //генерация кода                
-                foreach (ClassBasket classB in basket) 
+                order.OrderCode = rnd.Next(100, 800); //генерация кода
+                DataBase.Base.Order.Add(order);
+                DataBase.Base.SaveChanges();
+                foreach (ClassBasket clBasket in basket)
                 {
-                    OrderProduct orderProduct = new OrderProduct()
-                    {
-                        OrderID = order.OrderID,
-                        ProductArticleNumber = classB.product.ProductArticleNumber,
-                        ProductCount = classB.count
-                    };
-                    DataBase.Base.OrderProduct.Add(orderProduct);
+                    OrderProduct orderP = new OrderProduct(); //создание новых данных таблицы Orderproduct
+                    orderP.OrderID = order.OrderID;
+                    orderP.ProductArticleNumber = clBasket.product.ProductArticleNumber;
+                    orderP.ProductCount = clBasket.count;
+                    DataBase.Base.OrderProduct.Add(orderP);
                 }
                 DataBase.Base.SaveChanges();
                 MessageBox.Show("Успешное добавление заказа!");
                 basket.Clear();
                 Close();
+
             }
             catch
             {

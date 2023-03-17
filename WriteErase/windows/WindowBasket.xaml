@@ -33,8 +33,8 @@
                                     <ColumnDefinition Width="3*"/>
                                     <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
-                                <StackPanel Grid.Column="0">
-                                <Image Source="{Binding product.Photo, TargetNullValue={StaticResource NoImage}}" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image Source="{Binding product.Photo, TargetNullValue={StaticResource NoImage}}" Width="120" />
                                 </StackPanel>
                                 <StackPanel Grid.Column="1">
                                 <TextBlock Text="{Binding product.Name}" FontWeight="Bold" />
@@ -47,7 +47,7 @@
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Скидка:"/>
-                                        <TextBlock Text="{Binding product.Disc, StringFormat={}{0}%}"/>
+                                        <TextBlock Text="{Binding product.Disc}"/>
                                     </StackPanel>
                                 </StackPanel>
                             <Grid Grid.Column="2">
@@ -57,7 +57,7 @@
                                 </Grid.RowDefinitions>                                
                                 <StackPanel Orientation="Vertical" Grid.Row="0">
                                     <TextBlock Text="Количество: "/>
-                                    <TextBox Name="tbKolvo" Uid="{Binding product.ProductArticleNumber}" TextChanged="tbKolvo_TextChanged" PreviewTextInput="tbKolvo_PreviewTextInput" Style="{StaticResource Tb}" HorizontalAlignment="Center"/>
+                                    <TextBox Name="tbKolvo"  Text="1" Uid="{Binding product.ProductArticleNumber}" TextChanged="tbKolvo_TextChanged" PreviewTextInput="tbKolvo_PreviewTextInput" Style="{StaticResource Tb}" HorizontalAlignment="Center"/>
                                 </StackPanel>
                                 <StackPanel Grid.Row="1">
                                     <Button Name="bDelete" Uid="{Binding product.ProductArticleNumber}" Content="Удалить" Click="bDelete_Click"  Template="{StaticResource Btn2}"/>

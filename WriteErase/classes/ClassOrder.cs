@@ -37,7 +37,7 @@ namespace WriteErase
             {
                 if (OrderClient != null)
                 {
-                    return "Клиент: " + OrderClient;
+                    return "Заказчик: " + User.UserSurname + " " + User.UserName + " " + User.UserPatronymic;
                 }
                 else
                 {
