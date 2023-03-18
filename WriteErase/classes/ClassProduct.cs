@@ -34,7 +34,7 @@ namespace WriteErase
         {
             get
             {
-                if (ProductDiscountAmount != 0)
+                if (ProductDiscountAmount > 0)
                 {
                     SolidColorBrush solid = new SolidColorBrush(Color.FromRgb(127, 255, 0));
                     return solid;

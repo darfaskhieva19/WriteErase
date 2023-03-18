@@ -52,8 +52,8 @@ namespace WriteErase
             sum = 0; sumDiscount = 0; sD = 0;
             foreach (ClassBasket classBasket in basket)
             {
-                sum += (double)classBasket.product.CostOrders;
-                sD += (double)classBasket.product.ProductCost;
+                sum += classBasket.count * (double)classBasket.product.CostOrders;
+                sD += classBasket.count * (double)classBasket.product.ProductCost;
                 sumDiscount = 100-100 * sum / sD;
             }           
         }
@@ -71,7 +71,8 @@ namespace WriteErase
             if (basket.Count == 0)
             {
                 Close();
-            }            
+            }
+            calc();
         }
 
         private void tbKolvo_PreviewTextInput(object sender, TextCompositionEventArgs e) //запрет символов
@@ -146,6 +147,7 @@ namespace WriteErase
                 basket.Remove(classBasket);
                 ListProd.Items.Refresh();
             }
+            calc();
         }
     }
 }

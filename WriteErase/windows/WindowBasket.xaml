@@ -54,7 +54,7 @@
                                 </Grid.RowDefinitions>
                                 <StackPanel Orientation="Vertical" Grid.Row="0">
                                     <TextBlock Text="Количество: "/>
-                                    <TextBox Name="tbKolvo"  Text="1" Uid="{Binding product.ProductArticleNumber}" TextChanged="tbKolvo_TextChanged" PreviewTextInput="tbKolvo_PreviewTextInput" Style="{StaticResource Tb}" HorizontalAlignment="Center"/>
+                                    <TextBox Name="tbKolvo" Text="{Binding count}" Uid="{Binding product.ProductArticleNumber}" TextChanged="tbKolvo_TextChanged" PreviewTextInput="tbKolvo_PreviewTextInput" Style="{StaticResource Tb}" HorizontalAlignment="Center"/>
                                 </StackPanel>
                                 <StackPanel Grid.Row="1">
                                     <Button Name="bDelete" Uid="{Binding product.ProductArticleNumber}" Content="Удалить" Click="bDelete_Click"  Template="{StaticResource Btn2}"/>

@@ -42,6 +42,7 @@ namespace WriteErase
             {
                 Order.OrderStatus = cbStatus.SelectedIndex + 1;
                 DataBase.Base.SaveChanges();
+                MessageBox.Show("Статус заказа успешно изменен!");
                 Close();
             }
             catch
