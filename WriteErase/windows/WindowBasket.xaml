@@ -24,51 +24,49 @@
         <TextBlock Grid.Row="1" Name="tbFIO"/>
 
         <ListView Name="ListProd" Grid.Row="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Padding="1" CornerRadius="5" BorderThickness="0.5" BorderBrush="Black" >
-                            <Grid Name="gridM">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.5*"/>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="1" CornerRadius="5" BorderThickness="0.5" BorderBrush="Black" >
+                        <Grid Name="gridM">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <Image Source="{Binding product.Photo, TargetNullValue={StaticResource NoImage}}" Width="120" />
-                                </StackPanel>
-                                <StackPanel Grid.Column="1">
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
                                 <TextBlock Text="{Binding product.Name}" FontWeight="Bold" />
-                                    <TextBlock Text="{Binding product.Description}" TextWrapping="Wrap" />
-                                    <TextBlock Text="{Binding product.Manufact}" TextWrapping="Wrap" />
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Стоимость:"/>
-                                        <TextBlock Text="{Binding product.Price}" TextDecorations="Strikethrough"/>
-                                        <TextBlock Text="{Binding product.NewCost}" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Скидка:"/>
-                                        <TextBlock Text="{Binding product.Disc}"/>
-                                    </StackPanel>
+                                <TextBlock Text="{Binding product.Description}" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding product.Categorys}"/>
+                                <TextBlock Text="{Binding product.Manufact}" TextWrapping="Wrap" />
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Стоимость:"/>
+                                    <TextBlock Text="{Binding product.Price}" TextDecorations="Strikethrough"/>
+                                    <TextBlock Text="{Binding product.NewCost}" />
                                 </StackPanel>
+                                <TextBlock Text="{Binding product.Disc}"/>
+                            </StackPanel>
                             <Grid Grid.Column="2">
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition/>
-                                </Grid.RowDefinitions>                                
+                                </Grid.RowDefinitions>
                                 <StackPanel Orientation="Vertical" Grid.Row="0">
                                     <TextBlock Text="Количество: "/>
                                     <TextBox Name="tbKolvo"  Text="1" Uid="{Binding product.ProductArticleNumber}" TextChanged="tbKolvo_TextChanged" PreviewTextInput="tbKolvo_PreviewTextInput" Style="{StaticResource Tb}" HorizontalAlignment="Center"/>
                                 </StackPanel>
                                 <StackPanel Grid.Row="1">
                                     <Button Name="bDelete" Uid="{Binding product.ProductArticleNumber}" Content="Удалить" Click="bDelete_Click"  Template="{StaticResource Btn2}"/>
-                                </StackPanel>                                
+                                </StackPanel>
                             </Grid>
                         </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>

@@ -187,7 +187,7 @@
       <PropertyRef Name="UnitID" />
     </Key>
     <Property Name="UnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UnitOfMeasurement1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UnitOfMeasurements" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Product" Relationship="practic24Model.FK_Product_UnitOfMeasurement" FromRole="UnitOfMeasurement" ToRole="Product" />
   </EntityType>
   <EntityType Name="User">

@@ -88,8 +88,8 @@ namespace WriteErase
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 int kolvoDay = 0; //количество дней на доставку   
                 foreach (ClassBasket classBasket in basket)
                 {
@@ -103,11 +103,11 @@ namespace WriteErase
                     }
                 }
                 Order order = new Order(); //создание нового заказа 
-                order.OrderStatus = DataBase.Base.OrderStatus.FirstOrDefault(x => x.OrderStatusName == "Новый").IDOrderStatus;
+                order.OrderStatus = 1;
                 List<Order> orderL = DataBase.Base.Order.OrderBy(x => x.OrderID).ToList();
                 order.OrderID = orderL[orderL.Count - 1].OrderID + 1;
                 order.OrderDeliveryDate = order.OrderDate.AddDays(kolvoDay);
-                order.OrderPickupPoint = cbPickPoint.SelectedIndex + 1;
+                order.OrderPickupPoint = cbPickPoint.SelectedIndex;
                 order.OrderDate = DateTime.Now;
                 if (user != null)
                 {
@@ -130,12 +130,12 @@ namespace WriteErase
                 basket.Clear();
                 Close();
 
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Что-то пошло не так..");
-            //}
         }
+            catch
+            {
+                MessageBox.Show("Что-то пошло не так..");
+            }
+}
 
         private void bDelete_Click(object sender, RoutedEventArgs e)
         {

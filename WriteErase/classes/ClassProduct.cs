@@ -16,6 +16,20 @@ namespace WriteErase
                 return TitleProduct.TitleProduct1;
             }
         }
+        public string Categorys
+        {
+            get
+            {
+                return "Категория: " + Category.CategoryName;
+            }
+        }
+        public string Unit
+        {
+            get
+            {
+                return "Единица измерения: " + UnitOfMeasurement.UnitOfMeasurements;
+            }
+        }
         public string Description 
         {
             get

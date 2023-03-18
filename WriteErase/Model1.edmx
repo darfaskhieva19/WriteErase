@@ -108,7 +108,7 @@
             <PropertyRef Name="UnitID" />
           </Key>
           <Property Name="UnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UnitOfMeasurement" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UnitOfMeasurements" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -520,7 +520,7 @@
             <PropertyRef Name="UnitID" />
           </Key>
           <Property Name="UnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UnitOfMeasurement1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UnitOfMeasurements" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Product" Relationship="practic24Model.FK_Product_UnitOfMeasurement" FromRole="UnitOfMeasurement" ToRole="Product" />
         </EntityType>
         <EntityType Name="User">
@@ -681,7 +681,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -799,7 +799,7 @@
           <EntitySetMapping Name="UnitOfMeasurement">
             <EntityTypeMapping TypeName="practic24Model.UnitOfMeasurement">
               <MappingFragment StoreEntitySet="UnitOfMeasurement">
-                <ScalarProperty Name="UnitOfMeasurement1" ColumnName="UnitOfMeasurement" />
+                <ScalarProperty Name="UnitOfMeasurements" ColumnName="UnitOfMeasurements" />
                 <ScalarProperty Name="UnitID" ColumnName="UnitID" />
               </MappingFragment>
             </EntityTypeMapping>

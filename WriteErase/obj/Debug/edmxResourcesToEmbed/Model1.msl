@@ -113,7 +113,7 @@
     <EntitySetMapping Name="UnitOfMeasurement">
       <EntityTypeMapping TypeName="practic24Model.UnitOfMeasurement">
         <MappingFragment StoreEntitySet="UnitOfMeasurement">
-          <ScalarProperty Name="UnitOfMeasurement1" ColumnName="UnitOfMeasurement" />
+          <ScalarProperty Name="UnitOfMeasurements" ColumnName="UnitOfMeasurements" />
           <ScalarProperty Name="UnitID" ColumnName="UnitID" />
         </MappingFragment>
       </EntityTypeMapping>

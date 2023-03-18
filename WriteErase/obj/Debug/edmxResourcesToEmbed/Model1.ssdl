@@ -103,7 +103,7 @@
       <PropertyRef Name="UnitID" />
     </Key>
     <Property Name="UnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UnitOfMeasurement" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UnitOfMeasurements" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>
