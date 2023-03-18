@@ -65,10 +65,10 @@ namespace WriteErase
             ClassBasket Prbasket = basket.FirstOrDefault(z => z.product.ProductArticleNumber == index);
             if (tb.Text == "0")
             {                
-                basket.Remove(Prbasket);
+                basket.Remove(Prbasket); //если 0, то товар из корзину удаляется
                 ListProd.Items.Refresh();
             }
-            if (basket.Count == 0)
+            if (basket.Count == 0) //если товаров в корзине нет, то она закрывается
             {
                 Close();
             }
