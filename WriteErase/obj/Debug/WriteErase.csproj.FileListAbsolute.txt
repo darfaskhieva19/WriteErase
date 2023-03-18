@@ -72,7 +72,6 @@ C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\pages
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\windows\WindowStatus.g.cs
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\windows\WindowBasket.g.cs
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\windows\WindowOrder.g.cs
-C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\windows\WindowCaptcha.g.cs
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\App.g.cs
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\WriteErase_Content.g.cs
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\WriteErase_MarkupCompile.cache
@@ -94,14 +93,11 @@ C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\pages
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\windows\WindowStatus.baml
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\windows\WindowBasket.baml
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\windows\WindowOrder.baml
-C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\windows\WindowCaptcha.baml
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\WriteErase.g.resources
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\WriteErase.Properties.Resources.resources
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\WriteErase.csproj.GenerateResource.cache
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\WriteErase.csproj.CoreCompileInputs.cache
 C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\WriteErase.csproj.CopyComplete
-C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\windows\WindowDateDelivery.g.cs
-C:\Users\ФасхиеваДР\Source\Repos\WriteErase\WriteErase\obj\Debug\windows\WindowDateDelivery.baml
 C:\Users\User\Source\Repos\WriteEras\WriteErase\bin\Debug\WriteErase.exe.config
 C:\Users\User\Source\Repos\WriteEras\WriteErase\bin\Debug\WriteErase.exe
 C:\Users\User\Source\Repos\WriteEras\WriteErase\bin\Debug\WriteErase.pdb

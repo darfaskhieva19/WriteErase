@@ -84,7 +84,6 @@ namespace WriteErase
                             break;
                     }
                 }
-
             }
         }
 
@@ -130,8 +129,8 @@ namespace WriteErase
                 FontSize = random.Next(14, 18),
                 FontFamily = new FontFamily("Comic Sans MS"),
                 FontWeight = FontWeights.Bold,
-                Margin = new Thickness(15),
-                Padding = new Thickness(20)
+                Margin = new Thickness(17),
+                Padding = new Thickness(23)
             };
             CCaptcha.Children.Add(txt);
             TextBlock txt2 = new TextBlock()
@@ -170,7 +169,7 @@ namespace WriteErase
                 if (tbCaptcha.Text == str)
                 {
                     MessageBox.Show("Успешно!", "Подтверждение");
-                    ClassFrame.frameL.Navigate(new ListOfTovar());
+                    btAuto.IsEnabled = true;                    
                 }
                 else
                 {

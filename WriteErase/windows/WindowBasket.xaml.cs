@@ -45,7 +45,7 @@ namespace WriteErase
             }
             calc();
             tbSum.Text = "Сумма заказа: " + string.Format("{0:N2}", sum) + " руб.";
-            tbSumDiscount.Text = "Скидка: " + sumDiscount + "%";
+            tbSumDiscount.Text = "Скидка: " + string.Format("{0:N2}", sumDiscount) + "%";
         }     
         private void calc()
         {
@@ -86,11 +86,16 @@ namespace WriteErase
             Close();
         }
 
-        private void btnOrder_Click(object sender, RoutedEventArgs e)
+        private void btnOrder_Click(object sender, RoutedEventArgs e) //оформление заказа
         {
             try
             {
-                int kolvoDay = 0; //количество дней на доставку   
+                Order order = new Order();
+                int kolvoDay = 0; // Колличество дней на доставку
+                List<Order> orderL = DataBase.Base.Order.OrderBy(x => x.OrderID).ToList();
+                order.OrderID = orderL[orderL.Count - 1].OrderID + 1;
+                order.OrderStatus = 1;
+                order.OrderDate = DateTime.Now;
                 foreach (ClassBasket classBasket in basket)
                 {
                     if (classBasket.product.ProductQuantityInStock < 3)
@@ -102,13 +107,8 @@ namespace WriteErase
                         kolvoDay = 3;
                     }
                 }
-                Order order = new Order(); //создание нового заказа 
-                order.OrderStatus = 1;
-                List<Order> orderL = DataBase.Base.Order.OrderBy(x => x.OrderID).ToList();
-                order.OrderID = orderL[orderL.Count - 1].OrderID + 1;
                 order.OrderDeliveryDate = order.OrderDate.AddDays(kolvoDay);
-                order.OrderPickupPoint = cbPickPoint.SelectedIndex;
-                order.OrderDate = DateTime.Now;
+                order.OrderPickupPoint = cbPickPoint.SelectedIndex + 1;
                 if (user != null)
                 {
                     order.OrderClient = user.UserID;
@@ -119,7 +119,7 @@ namespace WriteErase
                 DataBase.Base.SaveChanges();
                 foreach (ClassBasket clBasket in basket)
                 {
-                    OrderProduct orderP = new OrderProduct(); //создание новых данных таблицы Orderproduct
+                    OrderProduct orderP = new OrderProduct();
                     orderP.OrderID = order.OrderID;
                     orderP.ProductArticleNumber = clBasket.product.ProductArticleNumber;
                     orderP.ProductCount = clBasket.count;
@@ -129,15 +129,14 @@ namespace WriteErase
                 MessageBox.Show("Успешное добавление заказа!");
                 basket.Clear();
                 Close();
-
-        }
+            }
             catch
             {
                 MessageBox.Show("Что-то пошло не так..");
             }
-}
+        }
 
-        private void bDelete_Click(object sender, RoutedEventArgs e)
+        private void bDelete_Click(object sender, RoutedEventArgs e) //удаление товара из корзины
         {
             if (MessageBox.Show("Вы действительно хотите удалить данный товар?", "Системное сообщение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {

@@ -48,9 +48,7 @@ namespace WriteErase
             }
             Filter();
         }
-        /// <summary>
-        /// поиск, сортировка, фильтрация
-        /// </summary>
+
         public void Filter()
         {
             listFilter = DataBase.Base.Product.ToList();

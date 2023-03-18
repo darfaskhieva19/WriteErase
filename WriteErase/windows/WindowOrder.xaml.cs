@@ -26,9 +26,6 @@ namespace WriteErase
             cbSort.SelectedIndex = 0;
             cbFilter.SelectedIndex = 0;
         }
-        /// <summary>
-        /// сортировка, фильтр
-        /// </summary>
         public void Filter()
         {
             List<Order> listFilter = DataBase.Base.Order.ToList();
@@ -79,18 +76,12 @@ namespace WriteErase
         {
             Close();
         }
-
-        private void btnUpDate_Click(object sender, RoutedEventArgs e)
+        private void btnUpDate_Click(object sender, RoutedEventArgs e) //переход на окно изменения даты доставки
         {
-            Button btn = (Button)sender;
-            int index = Convert.ToInt32(btn.Uid);
-            Order order = DataBase.Base.Order.FirstOrDefault(z => z.OrderID == index);
-            WindowDateDelivery dateDelivery = new WindowDateDelivery(order);
-            dateDelivery.ShowDialog();
-            lvOrder.Items.Refresh();
+            
         }
 
-        private void btnStatus_Click(object sender, RoutedEventArgs e)
+        private void btnStatus_Click(object sender, RoutedEventArgs e) //переход на окно изменения 
         {
             Button btn = (Button)sender;
             int index = Convert.ToInt32(btn.Uid);

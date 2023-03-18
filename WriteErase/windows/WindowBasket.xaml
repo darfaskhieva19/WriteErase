@@ -38,8 +38,7 @@
                             </StackPanel>
                             <StackPanel Grid.Column="1">
                                 <TextBlock Text="{Binding product.Name}" FontWeight="Bold" />
-                                <TextBlock Text="{Binding product.Description}" TextWrapping="Wrap" />
-                                <TextBlock Text="{Binding product.Categorys}"/>
+                                <TextBlock Text="{Binding product.Description}" TextWrapping="Wrap" />                               
                                 <TextBlock Text="{Binding product.Manufact}" TextWrapping="Wrap" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Стоимость:"/>
