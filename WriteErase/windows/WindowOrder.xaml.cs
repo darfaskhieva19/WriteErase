@@ -87,6 +87,7 @@ namespace WriteErase
             Order order = DataBase.Base.Order.FirstOrDefault(z => z.OrderID == index);
             WindowDateDelivery dateDelivery = new WindowDateDelivery(order);
             dateDelivery.ShowDialog();
+            lvOrder.Items.Refresh();
         }
 
         private void btnStatus_Click(object sender, RoutedEventArgs e)
@@ -96,6 +97,7 @@ namespace WriteErase
             Order order = DataBase.Base.Order.FirstOrDefault(z=>z.OrderID==index);
             WindowStatus windowStatus = new WindowStatus(order);
             windowStatus.ShowDialog();
+            lvOrder.Items.Refresh();
         }
     }
 }

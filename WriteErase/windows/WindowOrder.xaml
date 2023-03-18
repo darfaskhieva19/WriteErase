@@ -61,9 +61,9 @@
                                     <TextBlock Text="{Binding OrderS}"/>
                                     <TextBlock Text="{Binding FIOClient}"/>
                                 </StackPanel>
-                                <StackPanel>
-                                    <Button Name="btnUpDate" Uid="{Binding OrderID}" Content="Изменить дату доставки" Click="btnUpDate_Click"/>
-                                    <Button Name="btnStatus" Uid="{Binding OrderID}" Content="Поменять статус" Click="btnStatus_Click"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Name="btnUpDate" Uid="{Binding OrderID}" Content="Изменить дату" Click="btnUpDate_Click" Template="{StaticResource Btn}"/>
+                                    <Button Name="btnStatus" Uid="{Binding OrderID}" Content="Поменять статус" Click="btnStatus_Click" Template="{StaticResource Btn}"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

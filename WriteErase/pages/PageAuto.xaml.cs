@@ -24,6 +24,7 @@ namespace WriteErase
     {
         DispatcherTimer timer = new DispatcherTimer();
         int time = 10;
+        string str = String.Empty;
         public PageAuto()
         {
             InitializeComponent();
@@ -32,26 +33,9 @@ namespace WriteErase
         public PageAuto(int k)
         {
             InitializeComponent();
-            switch (k)
-            {
-                case 0:
-                    btAuto.IsEnabled = true;
-                    tbLogin.Focus();
-                    spCode.Visibility = Visibility.Collapsed;
-                    break;
-                case 1:
-                    btAuto.IsEnabled = false;
-                    tbLogin.Text = "";
-                    tbPassword.Password = "";
-                    tbLogin.IsEnabled = false;
-                    tbPassword.IsEnabled = false;
-                    tbLogin.Focus();
-                    timer.Interval = new TimeSpan(0, 0, 1);
-                    timer.Tick += new EventHandler(Timer_Tick);
-                    timer.Start();
-                    spCode.Visibility = Visibility.Visible;
-                    break;
-            }
+            tbLogin.Focus();
+            CAPTCHA();
+            spCaptcha.Visibility = Visibility.Visible;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -63,6 +47,7 @@ namespace WriteErase
                 timer.Stop();
                 btAuto.IsEnabled = true;
                 tbTime.Visibility = Visibility.Collapsed;
+                ClassFrame.frameL.Navigate(new PageAuto(2));
             }
         }
 
@@ -79,10 +64,13 @@ namespace WriteErase
                 {
                     MessageBox.Show("Вы ввели данные неверно! Повторите вход!");
                     btAuto.IsEnabled = false;
-                    CAPTCHA();                    
+                    tbLogin.Text = "";
+                    tbPassword.Password = "";
+                    CAPTCHA();
+                    spCaptcha.Visibility = Visibility.Visible;
                 }
                 else
-                {
+                {                    
                     switch (user.UserRole)
                     {
                         case 1: //клиент
@@ -96,18 +84,111 @@ namespace WriteErase
                             break;
                     }
                 }
+
             }
         }
 
         public void CAPTCHA()
         {
-            WindowCaptcha captcha = new WindowCaptcha();
-            captcha.ShowDialog();
+            CCaptcha.Children.Clear();
+            Random random = new Random();
+            string sym = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            string[] ch = new string[4];
+            for (int i = 0; i < 10; i++)
+            {
+                SolidColorBrush solidColor = new SolidColorBrush(Color.FromRgb((byte)random.Next(256), (byte)random.Next(256), (byte)random.Next(256)));
+                Line l = new Line()
+                {
+                    X1 = random.Next((int)CCaptcha.Width),
+                    Y1 = random.Next((int)CCaptcha.Height),
+                    X2 = random.Next((int)CCaptcha.Width),
+                    Y2 = random.Next((int)CCaptcha.Height),
+                    Stroke = solidColor
+                };
+                CCaptcha.Children.Add(l);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                ch[i] = Convert.ToString(sym[random.Next(sym.Length)]);
+                str += ch[i];
+            }
+            TextBlock txt1 = new TextBlock()
+            {
+                Text = (string)ch[0].ToString(),
+                TextDecorations = TextDecorations.Strikethrough,
+                FontSize = random.Next(18, 22),
+                FontFamily = new FontFamily("Comic Sans MS"),
+                FontWeight = FontWeights.Bold,
+                FontStyle = FontStyles.Italic,
+                Margin = new Thickness(10),
+                Padding = new Thickness(15)
+            };
+            CCaptcha.Children.Add(txt1);
+            TextBlock txt = new TextBlock()
+            {
+                Text = (string)ch[1].ToString(),
+                FontSize = random.Next(14, 18),
+                FontFamily = new FontFamily("Comic Sans MS"),
+                FontWeight = FontWeights.Bold,
+                Margin = new Thickness(15),
+                Padding = new Thickness(20)
+            };
+            CCaptcha.Children.Add(txt);
+            TextBlock txt2 = new TextBlock()
+            {
+                Text = (string)ch[2].ToString(),
+                TextDecorations = TextDecorations.Strikethrough,
+                FontSize = random.Next(14, 18),
+                FontFamily = new FontFamily("Comic Sans MS"),
+                FontWeight = FontWeights.Bold,
+                FontStyle = FontStyles.Italic,
+                Margin = new Thickness(10),
+                Padding = new Thickness(35)
+            };
+            CCaptcha.Children.Add(txt2);
+            TextBlock txt3 = new TextBlock()
+            {
+                Text = (string)ch[3].ToString(),
+                FontSize = random.Next(14, 18),
+                FontFamily = new FontFamily("Comic Sans MS"),
+                FontWeight = FontWeights.Bold,
+                Margin = new Thickness(20),
+                Padding = new Thickness(35)
+            };
+            CCaptcha.Children.Add(txt3);
         }
 
         private void tbGuest_Click(object sender, RoutedEventArgs e)
         {
             ClassFrame.frameL.Navigate(new ListOfTovar());
+        }
+
+        private void tbCaptcha_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tbCaptcha.Text.Length == 4)
+            {
+                if (tbCaptcha.Text == str)
+                {
+                    MessageBox.Show("Успешно!", "Подтверждение");
+                    ClassFrame.frameL.Navigate(new ListOfTovar());
+                }
+                else
+                {
+                    MessageBox.Show("CAPTCHA введена неверно!", "Ошибка");
+                    btAuto.IsEnabled = false;
+                    tbLogin.Text = "";
+                    tbPassword.Password = "";
+                    tbCaptcha.Text = "";
+                    tbLogin.IsEnabled = false;
+                    tbPassword.IsEnabled = false;
+                    tbCaptcha.IsEnabled = false;
+                    timer.Interval = new TimeSpan(0, 0, 1);
+                    timer.Tick += new EventHandler(Timer_Tick);
+                    timer.Start();
+                    tbTime.Visibility = Visibility.Visible;
+                    tbCaptcha.Visibility = Visibility.Visible;                    
+                }
+            }
         }
     }
 }

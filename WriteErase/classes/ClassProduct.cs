@@ -85,7 +85,7 @@ namespace WriteErase
         {
             get
             {
-                if (ProductDiscountAmount > 0)
+                if (ProductDiscountAmount != null)
                 {
                     double cost = (double)((double)ProductCost - (double)ProductCost * (ProductDiscountAmount / 100));
                     return cost;

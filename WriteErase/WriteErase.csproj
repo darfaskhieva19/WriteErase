@@ -130,9 +130,6 @@
     <Compile Include="windows\WindowOrder.xaml.cs">
       <DependentUpon>WindowOrder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="windows\WindowCaptcha.xaml.cs">
-      <DependentUpon>WindowCaptcha.xaml</DependentUpon>
-    </Compile>
     <Page Include="pages\ListOfTovar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,10 +164,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\WindowOrder.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="windows\WindowCaptcha.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

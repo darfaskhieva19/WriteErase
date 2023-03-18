@@ -23,6 +23,7 @@ namespace WriteErase
     {
         double sum; //сумма
         double sumDiscount; //скидка заказа
+        double sD;
         List<ClassBasket> basket;
         User user;
 
@@ -45,16 +46,16 @@ namespace WriteErase
             calc();
             tbSum.Text = "Сумма заказа: " + string.Format("{0:N2}", sum) + " руб.";
             tbSumDiscount.Text = "Скидка: " + sumDiscount + "%";
-            
         }     
         private void calc()
         {
-            sum = 0; sumDiscount = 0;
+            sum = 0; sumDiscount = 0; sD = 0;
             foreach (ClassBasket classBasket in basket)
             {
-                sum += classBasket.count * classBasket.product.CostOrders;
-                sumDiscount += classBasket.count * ((double)classBasket.product.ProductCost - classBasket.product.CostOrders);
-            }
+                sum += (double)classBasket.product.CostOrders;
+                sD += (double)classBasket.product.ProductCost;
+                sumDiscount = 100-100 * sum / sD;
+            }           
         }
         
         private void tbKolvo_TextChanged(object sender, TextChangedEventArgs e)
@@ -87,8 +88,8 @@ namespace WriteErase
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 int kolvoDay = 0; //количество дней на доставку   
                 foreach (ClassBasket classBasket in basket)
                 {
@@ -129,11 +130,11 @@ namespace WriteErase
                 basket.Clear();
                 Close();
 
-            }
-            catch
-            {
-                MessageBox.Show("Что-то пошло не так..");
-            }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Что-то пошло не так..");
+            //}
         }
 
         private void bDelete_Click(object sender, RoutedEventArgs e)

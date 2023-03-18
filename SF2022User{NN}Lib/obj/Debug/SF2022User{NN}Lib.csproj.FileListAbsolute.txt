@@ -1,0 +1,6 @@
+C:\Users\User\source\repos\WriteEras\SF2022User{NN}Lib\bin\Debug\SF2022User{NN}Lib.dll
+C:\Users\User\source\repos\WriteEras\SF2022User{NN}Lib\bin\Debug\SF2022User{NN}Lib.pdb
+C:\Users\User\source\repos\WriteEras\SF2022User{NN}Lib\obj\Debug\SF2022User{NN}Lib.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\WriteEras\SF2022User{NN}Lib\obj\Debug\SF2022User{NN}Lib.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\WriteEras\SF2022User{NN}Lib\obj\Debug\SF2022User{NN}Lib.dll
+C:\Users\User\source\repos\WriteEras\SF2022User{NN}Lib\obj\Debug\SF2022User{NN}Lib.pdb

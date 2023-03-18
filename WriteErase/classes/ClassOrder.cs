@@ -105,28 +105,27 @@ namespace WriteErase
         {
             get
             {
-                bool z = true;
                 List<OrderProduct> orderProducts = DataBase.Base.OrderProduct.Where(x => x.OrderID == OrderID).ToList();
-                foreach (OrderProduct ordersP in orderProducts)
+                var brush = new BrushConverter();
+                string product = "#ffffff";
+
+                foreach (OrderProduct order in orderProducts)
                 {
-                    Product product = DataBase.Base.Product.FirstOrDefault(x => x.ProductArticleNumber == ordersP.ProductArticleNumber);
-                    if (product.ProductQuantityInStock > 3)
+                    if (order.Product.ProductQuantityInStock > 3)
                     {
-                        z = false;
-                        break;
+                        product = "#20b2aa";
+                    }
+                    else if (order.Product.ProductQuantityInStock == 0)
+                    {
+                        product = "#ff8c00";
+                    }
+                    else
+                    {
+                        product = "#ffffff";
+
                     }
                 }
-                if (z)
-                {
-                    SolidColorBrush color = (SolidColorBrush)new BrushConverter().ConvertFromString("#20b2aa");
-                    return color;
-                }
-                else
-                {
-                    SolidColorBrush color = (SolidColorBrush)new BrushConverter().ConvertFromString("#ff8c00");
-                    return color;
-                }
-                return Brushes.White;
+                return (SolidColorBrush)(Brush)brush.ConvertFrom(product);
             }
         }
     }

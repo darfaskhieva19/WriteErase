@@ -38,7 +38,7 @@ namespace WriteErase
             {
                 order.OrderDeliveryDate = (DateTime)dpDate.SelectedDate;
                 DataBase.Base.SaveChanges();
-                Close();
+                Close();               
             }
             catch
             {

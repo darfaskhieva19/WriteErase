@@ -11,20 +11,25 @@
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" Text="Авторизация" Style="{StaticResource txtHeader}"/>
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Введите логин"/>
+            <GroupBox Header="Введите логин">
                 <TextBox Name="tbLogin" Style="{StaticResource TB}"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Введите пароль"/>
+            </GroupBox>
+            <GroupBox Header="Введите пароль">
                 <PasswordBox Name="tbPassword" />
+            </GroupBox>
+            <StackPanel Name="spCaptcha" Visibility="Collapsed">
+                <Border Name="borderCap" BorderBrush="Black" BorderThickness="1" Margin="0 10 0 0" Width="215" Height="83">
+                    <Canvas Name="CCaptcha" Width="200" Height="80" Background="AliceBlue"/>
+                </Border>
+                <StackPanel>
+                    <GroupBox Header="Введите текст с картинки" Margin="0 10 0 0">
+                        <TextBox Name="tbCaptcha" TextChanged="tbCaptcha_TextChanged"/>
+                    </GroupBox>
+                </StackPanel>
             </StackPanel>
-
-            <Button Margin="0 15 0 5" Name="btAuto" Content="Войти" Click="tbAuto_Click" Template="{StaticResource Btn}"/>
-            <StackPanel Name="spCode" Visibility="Collapsed">
-                <TextBlock Name="tbTime"/>
+            <Button Margin="0 15 0 5" Name="btAuto" Content="Войти" Click="tbAuto_Click" Template="{StaticResource Btn}" IsEnabled="True"/>
+            <Button Name="tbGuest" Content="Войти как гость" Click="tbGuest_Click" Template="{StaticResource Btn}" IsEnabled="True"/>
+            <TextBlock Name="tbTime" Visibility="Collapsed"/>
             </StackPanel>
-            <Button Name="tbGuest" Content="Войти как гость" Click="tbGuest_Click" Template="{StaticResource Btn}"/>
-        </StackPanel>
     </Grid>
 </Page>

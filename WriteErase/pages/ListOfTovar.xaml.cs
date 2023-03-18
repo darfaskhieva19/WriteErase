@@ -108,7 +108,7 @@ namespace WriteErase
         {
             Filter();
         }
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_Click(object sender, RoutedEventArgs e) //контекстное меню
         {
             Product product = (Product)ListT.SelectedItem;
             bool k = false;
